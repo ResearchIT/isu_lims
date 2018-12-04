@@ -2,6 +2,9 @@ from django.db import models
 
 class Genus(models.Model):
     genus = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.genus
 
 class SubGenus(models.Model):
     subgenus = models.CharField
