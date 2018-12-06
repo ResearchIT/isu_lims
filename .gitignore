@@ -1,4 +1,3 @@
 *.pyc
-settings.py
 lims_env
 *.sqlite3
