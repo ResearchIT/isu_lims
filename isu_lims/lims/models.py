@@ -2,6 +2,9 @@ from django.db import models
 
 class Genus(models.Model):
     genus = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = "Genera"
     
     def __str__(self):
         return self.genus
@@ -9,6 +12,9 @@ class Genus(models.Model):
 class SubGenus(models.Model):
     subgenus = models.CharField
     genus = models.ForeignKey(Genus, on_delete=models.CASCADE)
+    
+    class Meta:
+        verbose_name_plural = "SubGenera"
 
 class Genome(models.Model):
     genome = models.CharField(max_length=200)
@@ -17,6 +23,9 @@ class Genome(models.Model):
 class Species(models.Model):
     species = models.CharField(max_length=200)
     genome = models.ForeignKey(Genome, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "Species"
 
 WILD = 'W'
 DOMESTICATED = 'D'
