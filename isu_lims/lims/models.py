@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import date
 
-#I need to practice
+
 class Genus(models.Model):
     genus = models.CharField(max_length=200, blank = True)
 
@@ -19,9 +19,15 @@ class Genome(models.Model):
     genome = models.CharField(max_length=200, blank = True)
     subgenus = models.ForeignKey(SubGenus, on_delete=models.CASCADE, blank = True)
 
+    def __str__(self):
+        return self.genome
+
 class Species(models.Model):
     species = models.CharField(max_length=200, blank = True)
     genome = models.ForeignKey(Genome, on_delete=models.CASCADE, blank = True)
+
+    def __str__(self):
+        return self.species
 
 WILD = 'W'
 DOMESTICATED = 'D'
@@ -38,13 +44,17 @@ class Accession(models.Model):
     type = models.CharField(max_length=1, choices=ACCESSION_TYPE_CHOICES, blank = True)
     species = models.ForeignKey(Species, on_delete=models.CASCADE, blank = True)
 
+    def __str__(self):
+        return self.accession
+
 class Plant(models.Model):
     notes = models.TextField(blank = True)
     fromseed = models.ForeignKey('Seed', on_delete=models.CASCADE, blank = True)
     location = models.CharField(max_length=200, blank = True)
     photo = models.ImageField(blank = True)
 
-
+    def __str__(self):
+        return self.plant
     #We would also like to include barcode here somehow
 
 class SeedPacket(models.Model):
@@ -55,9 +65,15 @@ class SeedPacket(models.Model):
     datecollected = models.DateField(blank = True)
     accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True)
 
+    def __str__(self):
+        return self.seedpacket
+
 class Seed(models.Model):
     notes = models.TextField(blank = True)
     seed_packet = models.ForeignKey(SeedPacket, on_delete=models.CASCADE, blank = True)
+
+    def __str__(self):
+        return self.seed
 
 class Project(models.Model):
     name = models.CharField(max_length=200, blank = True)
@@ -68,6 +84,8 @@ class Project(models.Model):
     lead = models.CharField(max_length=100, blank = True)
     projecturl = models.URLField(max_length=300, blank = True)
 
+    def __str__(self):
+        return self.project
 DNA = 'D'
 RNA = 'R'
 PROTEIN = 'P'
@@ -86,3 +104,6 @@ class Sample(models.Model):
     notes = models.TextField
     plant = models.ForeignKey('Plant', on_delete=models.CASCADE, blank = True)
     accession = models.ForeignKey('Accession', on_delete=models.CASCADE, blank = True)
+
+    def __str__(self):
+        return self.sample

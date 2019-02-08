@@ -1,0 +1,9 @@
+{% if genera_list %}
+    <ul>
+    {% for genus in genera_list %}
+        <li><a href="/lims/{{ genus.id }}/">{{ genus.genus }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No genera are available.</p>
+{% endif %}
