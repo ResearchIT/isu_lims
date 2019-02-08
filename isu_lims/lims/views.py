@@ -6,7 +6,7 @@ from .models import Genus
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the lims index.")
+    return render(request, 'lims/index.html')
 
 def genera(request):
     genera_list = Genus.objects.all()
@@ -14,3 +14,4 @@ def genera(request):
     }
 
     return render(request, 'genera/index.html', context)
+

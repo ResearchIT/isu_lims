@@ -7,15 +7,9 @@
 <main role="main" id="main-content">
   	<div class="container">
 
-{% if genera_list %}
-    <ul>
-    {% for genus in genera_list %}
-        <li><a href="/lims/{{ genus.id }}/">{{ genus.genus }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No genera are available.</p>
-{% endif %}
+Welcome to LIMS
+
+Check out the <a href=genera>Genera</a>
 
 </main>
 
