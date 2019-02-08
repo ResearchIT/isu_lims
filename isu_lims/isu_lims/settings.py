@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lims.apps.LimsConfig',
+    'iastatetheme.apps.IastatethemeConfig',
 ]
 
 MIDDLEWARE = [
