@@ -1,10 +1,6 @@
 from django.db import models
 from datetime import date
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 944f8154a76e213ba3966cd7d1afda05de34039e
 class Genus(models.Model):
     genus = models.CharField(max_length=200)
 
@@ -35,13 +31,11 @@ class Species(models.Model):
     species = models.CharField(max_length=200, blank = True)
     genome = models.ForeignKey(Genome, on_delete=models.CASCADE, blank = True)
 
-<<<<<<< HEAD
-    def __str__(self):
-        return self.species
-=======
     class Meta:
         verbose_name_plural = "Species"
->>>>>>> 944f8154a76e213ba3966cd7d1afda05de34039e
+    
+    def __str__(self):
+        return self.species
 
 WILD = 'W'
 DOMESTICATED = 'D'
@@ -68,13 +62,9 @@ class Plant(models.Model):
     location = models.CharField(max_length=200, blank = True)
     photo = models.ImageField(blank = True)
 
-<<<<<<< HEAD
-    def __str__(self):
-        return self.plant
-    #We would also like to include barcode here somehow
+def __str__(self):
+    return self.plant
 
-=======
->>>>>>> 944f8154a76e213ba3966cd7d1afda05de34039e
 class SeedPacket(models.Model):
     notes = models.TextField(blank = True)
     parenta = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringa', blank = True)
@@ -104,6 +94,7 @@ class Project(models.Model):
 
     def __str__(self):
         return self.project
+        
 DNA = 'D'
 RNA = 'R'
 PROTEIN = 'P'

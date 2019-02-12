@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-{% if genera_list %}
-    <ul>
-    {% for genus in genera_list %}
-        <li><a href="/lims/{{ genus.id }}/">{{ genus.genus }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No genera are available.</p>
-{% endif %}
-=======
 {% load static %}
 
 {% include "iastatetheme/header.html" %}
@@ -25,4 +14,3 @@ Check out the <a href=genera>Genera</a>
 </main>
 
 {% include "iastatetheme/footer.html" %}
->>>>>>> 944f8154a76e213ba3966cd7d1afda05de34039e
