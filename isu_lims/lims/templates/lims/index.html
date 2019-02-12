@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% if genera_list %}
     <ul>
     {% for genus in genera_list %}
@@ -7,3 +8,21 @@
 {% else %}
     <p>No genera are available.</p>
 {% endif %}
+=======
+{% load static %}
+
+{% include "iastatetheme/header.html" %}
+{% include "iastatetheme/menu.html" %}
+
+<!-- main -->
+<main role="main" id="main-content">
+  	<div class="container">
+
+Welcome to LIMS
+
+Check out the <a href=genera>Genera</a>
+
+</main>
+
+{% include "iastatetheme/footer.html" %}
+>>>>>>> 944f8154a76e213ba3966cd7d1afda05de34039e

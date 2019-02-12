@@ -1,0 +1,153 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width,initial-scale=1" name="viewport">
+	<meta content="telephone=no" name="format-detection">
+	{% for name in site_name %}
+	<title>{{ name }}</title>
+	{% endfor %}
+	<link href="https://cdn.theme.iastate.edu/nimbus-sans/css/nimbus-sans.css" rel="stylesheet">
+	<link href="https://cdn.theme.iastate.edu/merriweather/css/merriweather.css" rel="stylesheet">
+	<link href="https://cdn.theme.iastate.edu/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="https://cdn.theme.iastate.edu/favicon/favicon.ico" rel="icon" type="image/x-icon">
+	<link href="https://cdn.theme.iastate.edu/favicon/favicon.png" rel="icon" type="">
+	<link href="https://cdn.theme.iastate.edu/favicon/apple-touch-icon.png" rel="icon">
+
+  <link rel="stylesheet" href="{% static 'css/iastate.min.css' %}">
+
+</head>
+
+<body class="">
+
+  <!-- skip-nav -->
+  <div class="skip-nav"><a href="#main-content">Skip to main content</a></div>
+  <!-- /skip-nav -->
+
+  <!-- header -->
+  <header>
+
+  <!-- navbar-iastate -->
+  <nav class="navbar-iastate">
+  	<div class="container">
+
+  		<!-- navbar-iastate-left -->
+  		<ul class="nav navbar-nav navbar-iastate-left">
+  			<li><a href='http://www.iastate.edu'>iastate.edu</a></li>
+  			<li class="dropdown dropdown-hover isu-index">
+  				<a href="http://www.iastate.edu/index/A" class="dropdown-toggle" data-toggle="" role="button" aria-haspopup="true" aria-expanded="false">Index</a>
+  				<ul class="dropdown-menu isu-index-alpha">
+  					<li><a href="http://www.iastate.edu/index/A/">A</a></li>
+  					<li><a href="http://www.iastate.edu/index/B/">B</a></li>
+  					<li><a href="http://www.iastate.edu/index/C/">C</a></li>
+  					<li><a href="http://www.iastate.edu/index/D/">D</a></li>
+  					<li><a href="http://www.iastate.edu/index/E/">E</a></li>
+  					<li><a href="http://www.iastate.edu/index/F/">F</a></li>
+  					<li><a href="http://www.iastate.edu/index/G/">G</a></li>
+  					<li><a href="http://www.iastate.edu/index/H/">H</a></li>
+  					<li><a href="http://www.iastate.edu/index/I/">I</a></li>
+  					<li><a href="http://www.iastate.edu/index/J/">J</a></li>
+  					<li><a href="http://www.iastate.edu/index/K/">K</a></li>
+  					<li><a href="http://www.iastate.edu/index/L/">L</a></li>
+  					<li><a href="http://www.iastate.edu/index/M/">M</a></li>
+  					<li><a href="http://www.iastate.edu/index/N/">N</a></li>
+  					<li><a href="http://www.iastate.edu/index/O/">O</a></li>
+  					<li><a href="http://www.iastate.edu/index/P/">P</a></li>
+  					<li><a href="http://www.iastate.edu/index/Q/">Q</a></li>
+  					<li><a href="http://www.iastate.edu/index/R/">R</a></li>
+  					<li><a href="http://www.iastate.edu/index/S/">S</a></li>
+  					<li><a href="http://www.iastate.edu/index/T/">T</a></li>
+  					<li><a href="http://www.iastate.edu/index/U/">U</a></li>
+  					<li><a href="http://www.iastate.edu/index/V/">V</a></li>
+  					<li><a href="http://www.iastate.edu/index/W/">W</a></li>
+  					<li><a href="http://www.iastate.edu/index/X/">X</a></li>
+  					<li><a href="http://www.iastate.edu/index/Y/">Y</a></li>
+  					<li><a href="http://www.iastate.edu/index/Z/">Z</a></li>
+  				</ul>
+  			</li>
+  		</ul>
+  		<!-- /navbar-iastate-left -->
+
+  		<!-- navbar-iastate-right -->
+  		<ul class="nav navbar-nav navbar-right navbar-iastate-right">
+  			<li><a href="http://info.iastate.edu/">Directory</a></li>
+  			<li><a href="http://www.fpm.iastate.edu/maps/">Maps</a></li>
+  			<li><a href="http://web.iastate.edu/safety/">Safety</a></li>
+  			<li class="dropdown dropdown-hover">
+  				<a href="//web.iastate.edu/signons/" class="dropdown-toggle" data-toggle="" role="button" aria-haspopup="true" aria-expanded="false">Sign Ons</a>
+  				<ul class="dropdown-menu">
+  					<li><a href="http://accessplus.iastate.edu/">AccessPlus</a></li>
+  					<li><a href="http://bb.its.iastate.edu/">Blackboard</a></li>
+  					<li><a href="http://iastate.box.com/">CyBox</a></li>
+  					<li><a href="http://cymail.iastate.edu/">CyMail</a></li>
+  					<li><a href="http://outlook.iastate.edu/">Outlook</a></li>
+  					<li><a href="https://web.iastate.edu/signons/">More Sign Ons...</a></li>
+  				</ul>
+  			</li>
+  		</ul>
+  		<!-- /navbar-iastate-right -->
+
+  	</div>
+  </nav>
+  <!-- /navbar-iastate -->
+
+  <!-- navbar-site -->
+  <nav class="navbar-site">
+  	<div class="container">
+
+  		<div class="navbar-site-wordmark">
+  			<a href="/" title="Home" class="wordmark-unit">
+  				<span class="wordmark-isu">Iowa State University</span>
+  				<span class="wordmark-unit-title">{{ sitetheme.site_name }}</span>
+  			</a>
+  		</div>
+
+  		<div class="navbar-header visible-xs visible-sm">
+  			<button id="navbar-menu-button" type="button" class="navbar-toggle navbar-toggle-left collapsed" data-toggle="collapse" data-target="#navbar-menu-collapse, #navbar-site-links-collapse" aria-expanded="false">
+  				<span class="navbar-toggle-icon menu-icon">
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  				</span>
+  				<span class="navbar-toggle-label">
+  					Menu <span class="sr-only">Toggle</span>
+  				</span>
+  			</button>
+  			<button id="navbar-search-button" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-site-search-collapse" aria-expanded="false">
+  				<span class="navbar-toggle-icon search-icon"></span>
+  				<span class="navbar-toggle-label">
+  					Search <span class="sr-only">Toggle</span>
+  				</span>
+  			</button>
+  		</div>
+
+  		<div class="navbar-site-info collapse navbar-collapse" id="navbar-site-search-collapse">
+  			<form action="//google.iastate.edu/search" class="navbar-site-search" method="GET" role="search">
+  				<label for="search-input" class="sr-only">Search</label>
+  				<input name="output" type="hidden" value="xml_no_dtd">
+  				<input name="client" type="hidden" value="default_frontend">
+  				<input name="proxystylesheet" type="hidden" value="default_frontend">
+  				<input id="search-input" aria-label="Text input for search" title="Search" placeholder="Search" tabindex="0" type="text" class="form-control">
+  				<input class="hidden" title="Submit" type="submit" value="Search">
+  				<span class="search-icon"></span>
+  			</form>
+  		</div>
+
+  		<div class="navbar-site-info collapse navbar-collapse navbar-caps" id="navbar-site-links-collapse">
+  			<ul class="nav navbar-nav navbar-right">
+  				<!-- Site-wide links. Customized for your site -->
+  				<li><a href="">Contact</a></li>
+  				<li><a href="">Events</a></li>
+  				<li><a href="">News</a></li>
+  			</ul>
+  		</div>
+
+  	</div>
+  </nav>
+  <!-- /navbar-site -->
+
+  </header>
+  <!-- /header -->
