@@ -18,3 +18,10 @@ def genera(request):
 
     return render(request, 'genera/index.html', context)
 
+def subgenera(request):
+    subgenera_list = Subgenus.objects.all()
+    context = {'subgenera_list': subgenera_list,
+    }
+
+    return render(request, 'subgenera/index.html', context)
+
