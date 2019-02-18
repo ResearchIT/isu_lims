@@ -10,9 +10,9 @@ class Genus(models.Model):
     def __str__(self):
         return self.genus
 
-class SubGenus(models.Model):
-    subgenus = models.CharField
-    genus = models.ForeignKey(Genus, on_delete=models.CASCADE)
+class Subgenus(models.Model):
+    subgenus = models.CharField(max_length=200, blank = True)
+    genus = models.ForeignKey(Genus, on_delete=models.CASCADE, blank = True)
     
     class Meta:
         verbose_name_plural = "SubGenera"
@@ -22,7 +22,7 @@ class SubGenus(models.Model):
 
 class Genome(models.Model):
     genome = models.CharField(max_length=200, blank = True)
-    subgenus = models.ForeignKey(SubGenus, on_delete=models.CASCADE, blank = True)
+    subgenus = models.ForeignKey(Subgenus, on_delete=models.CASCADE, blank = True)
 
     def __str__(self):
         return self.genome
@@ -94,7 +94,7 @@ class Project(models.Model):
 
     def __str__(self):
         return self.project
-        
+
 DNA = 'D'
 RNA = 'R'
 PROTEIN = 'P'
