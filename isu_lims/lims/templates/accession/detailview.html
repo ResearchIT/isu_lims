@@ -7,10 +7,10 @@
 <main role="main" id="main-content">
   	<div class="container">
 
-{% if genera_list %}
+{% if genera_context %}
     <ul>
-    {% for genus in genera_list %}
-        <li><a href="/lims/{{'genus-detail'}}/">{{ genus.genus }}</a></li>
+    {% for genus in genera_context %}
+        <li><a href="/lims/{{ genus.id }}/">{{ genus.genus }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
