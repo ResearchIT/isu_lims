@@ -10,7 +10,7 @@
 {% if genera_list %}
     <ul>
     {% for genus in genera_list %}
-        <li><a href="/lims/{{'genus-detail'}}/">{{ genus.genus }}</a></li>
+        <li><a href="/lims/genera/<genus>/">{{ genus.genus }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
