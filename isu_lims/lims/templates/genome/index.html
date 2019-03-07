@@ -7,14 +7,14 @@
 <main role="main" id="main-content">
   	<div class="container">
 
-{% if genera_list %}
+{% if genome_list %}
     <ul>
-    {% for genus in genera_list %}
-        <li><a href="/lims/genus/{{ genus.id }}">{{ genus.genus }}</a></li>
+    {% for genome in genome_list %}
+        <li><a href="/lims/{{ genome.id }}/">{{ genome.genome }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No genera are available.</p>
+    <p>No genomes are available.</p>
 {% endif %}
 
 </main>

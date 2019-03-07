@@ -7,14 +7,14 @@
 <main role="main" id="main-content">
   	<div class="container">
 
-{% if genera_list %}
+{% if accession_list %}
     <ul>
-    {% for genus in genera_list %}
-        <li><a href="/lims/genus/{{ genus.id }}">{{ genus.genus }}</a></li>
+    {% for accession in accession_list %}
+        <li><a href="/lims/{{ accession.id }}/">{{ accession.accession }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No genera are available.</p>
+    <p>No accessions are available.</p>
 {% endif %}
 
 </main>

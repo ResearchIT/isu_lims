@@ -10,9 +10,9 @@ class Genus(models.Model):
     def __str__(self):
         return self.genus
 
-class SubGenus(models.Model):
-    subgenus = models.CharField
-    genus = models.ForeignKey(Genus, on_delete=models.CASCADE)
+class Subgenus(models.Model):
+    subgenus = models.CharField(max_length=200, blank = True)
+    genus = models.ForeignKey(Genus, on_delete=models.CASCADE, blank = True)
     
     class Meta:
         verbose_name_plural = "SubGenera"
@@ -22,7 +22,10 @@ class SubGenus(models.Model):
 
 class Genome(models.Model):
     genome = models.CharField(max_length=200, blank = True)
-    subgenus = models.ForeignKey(SubGenus, on_delete=models.CASCADE, blank = True)
+    subgenus = models.ForeignKey(Subgenus, on_delete=models.CASCADE, blank = True)
+
+    def __str__(self):
+        return self.genome
 
 class Species(models.Model):
     species = models.CharField(max_length=200, blank = True)
@@ -30,6 +33,9 @@ class Species(models.Model):
 
     class Meta:
         verbose_name_plural = "Species"
+    
+    def __str__(self):
+        return self.species
 
 WILD = 'W'
 DOMESTICATED = 'D'
@@ -47,11 +53,17 @@ class Accession(models.Model):
     type = models.CharField(max_length=1, choices=ACCESSION_TYPE_CHOICES, blank = True)
     species = models.ForeignKey(Species, on_delete=models.CASCADE, blank = True)
 
+    def __str__(self):
+        return self.accession
+
 class Plant(models.Model):
     notes = models.TextField(blank = True)
     fromseed = models.ForeignKey('Seed', on_delete=models.CASCADE, blank = True)
     location = models.CharField(max_length=200, blank = True)
     photo = models.ImageField(blank = True)
+
+def __str__(self):
+    return self.plant
 
 class SeedPacket(models.Model):
     notes = models.TextField(blank = True)
@@ -61,9 +73,15 @@ class SeedPacket(models.Model):
     datecollected = models.DateField(blank = True)
     accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True)
 
+    def __str__(self):
+        return self.seedpacket
+
 class Seed(models.Model):
     notes = models.TextField(blank = True)
     seed_packet = models.ForeignKey(SeedPacket, on_delete=models.CASCADE, blank = True)
+
+    def __str__(self):
+        return self.seed
 
 class Project(models.Model):
     name = models.CharField(max_length=200, blank = True)
@@ -73,6 +91,9 @@ class Project(models.Model):
     grant = models.TextField(blank = True)
     lead = models.CharField(max_length=100, blank = True)
     projecturl = models.URLField(max_length=300, blank = True)
+
+    def __str__(self):
+        return self.project
 
 DNA = 'D'
 RNA = 'R'
@@ -92,3 +113,6 @@ class Sample(models.Model):
     notes = models.TextField
     plant = models.ForeignKey('Plant', on_delete=models.CASCADE, blank = True)
     accession = models.ForeignKey('Accession', on_delete=models.CASCADE, blank = True)
+
+    def __str__(self):
+        return self.sample
