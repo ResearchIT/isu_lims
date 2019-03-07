@@ -1,5 +1,3 @@
-from django.http import HttpResponse
-
 from django.shortcuts import render
 from iastatetheme.models import SiteTheme
 from django.views.generic.detail import DetailView
@@ -22,7 +20,7 @@ def genera(request):
 from django.views.generic import DetailView
 from .models import Genus, Subgenus
 
-class GenusDetail(DetailView):
+class GenusDetailView(DetailView):
 
     model = Genus
 

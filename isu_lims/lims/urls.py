@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import GenusDetail
+from .views import GenusDetailView
 
 
 urlpatterns = [
@@ -15,5 +15,5 @@ urlpatterns = [
     path('seed', views.seed, name='seed'),
     path('project', views.project, name='project'),
     path('sample', views.sample, name='sample'),
-    path('genera/<genus>/', GenusDetail.as_view(), name='genus-detail'),
+    path('genus', GenusDetailView.as_view(), name='genus'),
 ]
