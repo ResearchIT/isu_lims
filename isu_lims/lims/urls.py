@@ -15,5 +15,5 @@ urlpatterns = [
     path('seed', views.seed, name='seed'),
     path('project', views.project, name='project'),
     path('sample', views.sample, name='sample'),
-    path('genus', GenusDetailView.as_view(), name='genus'),
+    path('genus/<int:pk>/', GenusDetailView.as_view(), name='genus-detail'),
 ]
