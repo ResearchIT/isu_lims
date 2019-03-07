@@ -17,4 +17,5 @@ urlpatterns = [
     path('sample', views.sample, name='sample'),
     path('genera/<genus>/', GenusDetail.as_view(), name='genus-detail'),
     path('name', views.name, name='name'),
+    path('thanks', views.thanks, name='thanks')
 ]

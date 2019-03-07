@@ -10,6 +10,9 @@ from django.views.generic.detail import DetailView
 def index(request):
     return render(request, 'lims/index.html')
 
+def thanks(request):
+    return render(request, 'lims/thanks.html')
+
 from .models import Genus
 
 def genera(request):
