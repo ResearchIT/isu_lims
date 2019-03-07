@@ -10,7 +10,7 @@
 {% if subgenera_list %}
     <ul>
     {% for subgenus in subgenera_list %}
-        <li><a href="/lims/{{ subgenus.id }}/">{{ subgenus.subgenus }}</a></li>
+        <li><a href="/lims/subgenus/{{ subgenus.id }}">{{ subgenus.subgenus }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
