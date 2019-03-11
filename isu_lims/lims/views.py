@@ -66,6 +66,20 @@ def subgenera(request):
 
     return render(request, 'subgenera/index.html', context)
 
+from django.views.generic import DetailView
+from .models import Genus, Subgenus
+
+class SubgenusDetailView(DetailView):
+
+    model = Subgenus
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the genera
+        context['subgenera_list'] = Subgenus.objects.all()
+        return context
+
 from .models import Genome
 
 def genome(request):
