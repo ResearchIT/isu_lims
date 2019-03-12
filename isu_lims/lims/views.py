@@ -76,7 +76,7 @@ class SubgenusDetailView(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in a QuerySet of all the genera
+        # Add in a QuerySet of all the subgenera
         context['subgenera_list'] = Subgenus.objects.all()
         return context
 
@@ -89,6 +89,20 @@ def genome(request):
 
     return render(request, 'genome/index.html', context)
 
+from django.views.generic import DetailView
+from .models import Genus, Subgenus, Genome
+
+class GenomeDetailView(DetailView):
+
+    model = Genome
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the genome
+        context['genome_list'] = Genome.objects.all()
+        return context
+
 
 from .models import Species
 
@@ -99,6 +113,20 @@ def species(request):
 
     return render(request, 'species/index.html', context)
 
+from django.views.generic import DetailView
+from .models import Genus, Subgenus, Genome, Species
+
+class SpeciesDetailView(DetailView):
+
+    model = Species
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the genome
+        context['species_list'] = Species.objects.all()
+        return context
+
 from .models import Accession
 
 def accession(request):
@@ -108,6 +136,20 @@ def accession(request):
 
     return render(request, 'accession/index.html', context)
 
+from django.views.generic import DetailView
+from .models import Genus, Subgenus, Genome, Species, Accession
+
+class AccessionDetailView(DetailView):
+
+    model = Accession
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the accessions
+        context['accession_list'] = Accession.objects.all()
+        return context
+
 from .models import Plant
 
 def plant(request):
@@ -116,6 +158,20 @@ def plant(request):
     }
 
     return render(request, 'plant/index.html', context)
+
+from django.views.generic import DetailView
+from .models import Genus, Subgenus, Genome, Species, Accession, Plant
+
+class PlantDetailView(DetailView):
+
+    model = Plant
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the accessions
+        context['plant_list'] = Plant.objects.all()
+        return context
 
 from .models import SeedPacket
 

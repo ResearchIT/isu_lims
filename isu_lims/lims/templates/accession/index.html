@@ -10,7 +10,7 @@
 {% if accession_list %}
     <ul>
     {% for accession in accession_list %}
-        <li><a href="/lims/{{ accession.id }}/">{{ accession.accession }}</a></li>
+        <li><a href="/lims/accession/{{ accession.id }}">{{ accession.accession }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

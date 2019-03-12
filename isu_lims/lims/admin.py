@@ -6,6 +6,7 @@ from .models import *
 admin.site.register(Genus)
 admin.site.register(Subgenus)
 admin.site.register(Species)
+admin.site.register(Genome)
 admin.site.register(Accession)
 admin.site.register(Plant)
 admin.site.register(SeedPacket)

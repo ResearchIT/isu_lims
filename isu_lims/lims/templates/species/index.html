@@ -10,7 +10,7 @@
 {% if species_list %}
     <ul>
     {% for species in species_list %}
-        <li><a href="/lims/{{ species.id }}/">{{ species.species }}</a></li>
+        <li><a href="/lims/species/{{ species.id }}">{{ species.species }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

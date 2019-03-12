@@ -10,7 +10,7 @@
 {% if genome_list %}
     <ul>
     {% for genome in genome_list %}
-        <li><a href="/lims/{{ genome.id }}/">{{ genome.genome }}</a></li>
+        <li><a href="/lims/genome/{{ genome.id }}">{{ genome.genome }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

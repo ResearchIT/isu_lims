@@ -1,7 +1,11 @@
 from django.urls import path
 from . import views
 from .views import GenusDetailView
-
+from .views import SubgenusDetailView
+from .views import GenomeDetailView
+from .views import SpeciesDetailView
+from .views import AccessionDetailView
+from .views import PlantDetailView
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -23,10 +27,9 @@ urlpatterns = [
     path('species/<int:pk>/', SpeciesDetailView.as_view(), name='species-detail'),
     path('accession/<int:pk>/', AccessionDetailView.as_view(), name='accession-detail'),
     path('plant/<int:pk>/', PlantDetailView.as_view(), name='plant-detail'),
-    path('seedpacket/<int:pk>/', SeedPacketDetailView.as_view(), name='seedpacket-detail'),
-    path('seed/<int:pk>/', SeedDetailView.as_view(), name='seed-detail'),
-    path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
-    path('sample/<int:pk>/', SampleDetailView.as_view(), name='sample-detail'),
-
+    #path('seedpacket/<int:pk>/', SeedPacketDetailView.as_view(), name='seedpacket-detail'),
+    #path('seed/<int:pk>/', SeedDetailView.as_view(), name='seed-detail'),
+    #path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
+    #path('sample/<int:pk>/', SampleDetailView.as_view(), name='sample-detail'),
 
 ]
