@@ -57,15 +57,17 @@ class Accession(models.Model):
         return self.accession
 
 class Plant(models.Model):
+    plant = models.CharField(max_length=200, blank = True)
     notes = models.TextField(blank = True)
     fromseed = models.ForeignKey('Seed', on_delete=models.CASCADE, blank = True)
     location = models.CharField(max_length=200, blank = True)
     photo = models.ImageField(blank = True)
 
-def __str__(self):
-    return self.plant
+    def __str__(self):
+        return self.plant
 
 class SeedPacket(models.Model):
+    seedpacket = models.CharField(max_length=200, blank = True)
     notes = models.TextField(blank = True)
     parenta = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringa', blank = True, null = True)
     parentb = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringb', blank = True, null = True)
@@ -77,6 +79,7 @@ class SeedPacket(models.Model):
         return self.seedpacket
 
 class Seed(models.Model):
+    seed = models.CharField(max_length=200, blank = True)
     notes = models.TextField(blank = True)
     seed_packet = models.ForeignKey(SeedPacket, on_delete=models.CASCADE, blank = True)
 
@@ -84,13 +87,12 @@ class Seed(models.Model):
         return self.seed
 
 class Project(models.Model):
-    name = models.CharField(max_length=200, blank = True)
+    project = models.CharField(max_length=200, blank = True)
     startdate = models.DateField(auto_now_add = True, null = True, blank = True)
     enddate = models.DateField(auto_now_add = True, null = True, blank = True)
-    url = models.URLField(blank = True)
+    url = models.URLField(blank = True, null = True)
     grant = models.TextField(blank = True)
     lead = models.CharField(max_length=100, blank = True)
-    projecturl = models.URLField(max_length=300, blank = True)
 
     def __str__(self):
         return self.project
@@ -109,6 +111,7 @@ SAMPLE_TYPE_CHOICES = (
 )
 
 class Sample(models.Model):
+    sample = models.CharField(max_length=200, blank = True)
     type = models.CharField(max_length=1, choices=SAMPLE_TYPE_CHOICES)
     notes = models.TextField
     plant = models.ForeignKey('Plant', on_delete=models.CASCADE, blank = True)
