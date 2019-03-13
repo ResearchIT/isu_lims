@@ -9,12 +9,12 @@
 
 {% if seedpacket_list %}
     <ul>
-    {% for plant in seedpacket_list %}
+    {% for seedpacket in seedpacket_list %}
         <li><a href="/lims/seedpacket/{{ seedpacket.id }}">{{ seedpacket.seedpacket }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No seed packets are available.</p>
+    <p>No plants are available.</p>
 {% endif %}
 
 </main>
