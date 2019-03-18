@@ -7,15 +7,14 @@
 <main role="main" id="main-content">
   	<div class="container">
 
-{% if seed_list %}
-    <ul>
-    {% for seed in seed_list %}
-        <li><a href="/lims/seed/{{ seed.id }}">{{ seed.seed }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No seeds are available.</p>
-{% endif %}
+<h3>Project Detail<h3>
+
+{{project.project}}	
+{{project.url}}
+{{project.grant}}
+{{project.lead}}
+
+
 
 </main>
 

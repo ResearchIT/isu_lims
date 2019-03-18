@@ -7,6 +7,9 @@ from .views import SpeciesDetailView
 from .views import AccessionDetailView
 from .views import PlantDetailView
 from .views import SeedPacketDetailView
+from .views import SeedDetailView
+from .views import ProjectDetailView
+from .views import SampleDetailView
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -29,8 +32,8 @@ urlpatterns = [
     path('accession/<int:pk>/', AccessionDetailView.as_view(), name='accession-detail'),
     path('plant/<int:pk>/', PlantDetailView.as_view(), name='plant-detail'),
     path('seedpacket/<int:pk>/', SeedPacketDetailView.as_view(), name='seedpacket-detail'),
-    #path('seed/<int:pk>/', SeedDetailView.as_view(), name='seed-detail'),
-    #path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
-    #path('sample/<int:pk>/', SampleDetailView.as_view(), name='sample-detail'),
+    path('seed/<int:pk>/', SeedDetailView.as_view(), name='seed-detail'),
+    path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
+    path('sample/<int:pk>/', SampleDetailView.as_view(), name='sample-detail'),
 
 ]

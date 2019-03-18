@@ -206,6 +206,17 @@ def seed(request):
 
     return render(request, 'seed/index.html', context)
 
+class SeedDetailView(DetailView):
+
+    model = Seed
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the seed packets
+        context['seed_list'] = Seed.objects.all()
+        return context
+
 from .models import Project
 
 def project(request):
@@ -214,6 +225,17 @@ def project(request):
     }
 
     return render(request, 'project/index.html', context)
+
+class ProjectDetailView(DetailView):
+
+    model = Project
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the seed packets
+        context['project_list'] = Project.objects.all()
+        return context
 
 from .models import Sample
 
@@ -224,3 +246,13 @@ def sample(request):
 
     return render(request, 'sample/index.html', context)
     
+class SampleDetailView(DetailView):
+
+    model = Sample
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the samples
+        context['sample_list'] = Sample.objects.all()
+        return context
