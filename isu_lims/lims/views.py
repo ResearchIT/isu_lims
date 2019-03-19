@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from iastatetheme.models import SiteTheme
 from django.views.generic.detail import DetailView
-
+from django.http import HttpResponseRedirect
 
 
 
@@ -113,4 +113,15 @@ def sample(request):
     }
 
     return render(request, 'sample/index.html', context)
-    
+
+
+from .forms import NewSeedPacketForm
+def newseedpacket(request):
+    if request.method == 'POST':
+        form = NewSeedPacketForm(request.POST)
+        if form.is_valid():
+            seedpacket = form.save()
+            return HttpResponseRedirect('seedpacket/new')
+    else:
+        form = NewSeedPacketForm()
+    return render(request, 'seedpacket/newseedpacketform.html', {'form': form})

@@ -16,4 +16,5 @@ urlpatterns = [
     path('project', views.project, name='project'),
     path('sample', views.sample, name='sample'),
     path('genus/<int:pk>/', GenusDetailView.as_view(), name='genus-detail'),
+    path('seedpacket/new', views.newseedpacket, name='newseedpacket'),
 ]

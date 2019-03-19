@@ -48,23 +48,36 @@ ACCESSION_TYPE_CHOICES = (
     (UNKNOWN, 'Unknown'),
 )
 
+#admin only
 class Accession(models.Model):
     accession = models.CharField(max_length=200, blank = True)
     type = models.CharField(max_length=1, choices=ACCESSION_TYPE_CHOICES, blank = True)
     species = models.ForeignKey(Species, on_delete=models.CASCADE, blank = True)
+    # add alternate names
+    # add PI-number (USDA germplasm database - could be a link, maybe)
 
     def __str__(self):
         return self.accession
 
+# needs a form to create
+# relates to sample
+# needs sample dates
+# needs a disposition 
+# flowering or not
 class Plant(models.Model):
     notes = models.TextField(blank = True)
     fromseed = models.ForeignKey('Seed', on_delete=models.CASCADE, blank = True)
     location = models.CharField(max_length=200, blank = True)
     photo = models.ImageField(blank = True)
 
-def __str__(self):
-    return self.plant
+    def __str__(self):
+        return self.plant 
 
+# need to track who has them checked out / location (box, or desk, or storage, etc.)
+# should be in storage, but often kept at workbench
+# sending to collaborators
+# what did they do with the seeds ? (sample, planted, etc.)
+# might get shipped & not be part of collection at all anymore
 class SeedPacket(models.Model):
     notes = models.TextField(blank = True)
     parenta = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringa', blank = True)
@@ -76,6 +89,7 @@ class SeedPacket(models.Model):
     def __str__(self):
         return self.seedpacket
 
+# maybe more for hufford lab
 class Seed(models.Model):
     notes = models.TextField(blank = True)
     seed_packet = models.ForeignKey(SeedPacket, on_delete=models.CASCADE, blank = True)
@@ -83,12 +97,14 @@ class Seed(models.Model):
     def __str__(self):
         return self.seed
 
+# needs to relate to plants & samples too
 class Project(models.Model):
     name = models.CharField(max_length=200, blank = True)
     startdate = models.DateField(auto_now_add = True, null = True, blank = True)
     enddate = models.DateField(auto_now_add = True, null = True, blank = True)
     url = models.URLField(blank = True)
     grant = models.TextField(blank = True)
+    # need agency & grant number
     lead = models.CharField(max_length=100, blank = True)
     projecturl = models.URLField(max_length=300, blank = True)
 
@@ -112,7 +128,17 @@ class Sample(models.Model):
     type = models.CharField(max_length=1, choices=SAMPLE_TYPE_CHOICES)
     notes = models.TextField
     plant = models.ForeignKey('Plant', on_delete=models.CASCADE, blank = True)
+    #do we need accession if we have plant ?
     accession = models.ForeignKey('Accession', on_delete=models.CASCADE, blank = True)
 
     def __str__(self):
         return self.sample
+
+#sequencing tech
+#sequencing center
+#sequencing company
+#sequencing tracking number
+#sra
+#pcr free or not
+#coverage
+#strategy (paired or single) pe-150,se-150, .etc.
