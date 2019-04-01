@@ -80,14 +80,14 @@ class Plant(models.Model):
 # might get shipped & not be part of collection at all anymore
 class SeedPacket(models.Model):
     notes = models.TextField(blank = True)
-    parenta = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringa', blank = True)
-    parentb = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringb', blank = True)
+    parenta = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringa', blank = True, null=True)
+    parentb = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringb', blank = True, null=True)
     quantity = models.IntegerField(default=0)
     datecollected = models.DateField(blank = True)
     accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True)
 
     def __str__(self):
-        return self.seedpacket
+        return self.notes
 
 # maybe more for hufford lab
 class Seed(models.Model):

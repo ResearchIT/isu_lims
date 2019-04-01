@@ -121,7 +121,7 @@ def newseedpacket(request):
         form = NewSeedPacketForm(request.POST)
         if form.is_valid():
             seedpacket = form.save()
-            return HttpResponseRedirect('seedpacket/new')
+            return HttpResponseRedirect('new')
     else:
         form = NewSeedPacketForm()
     return render(request, 'seedpacket/newseedpacketform.html', {'form': form})
