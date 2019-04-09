@@ -1,5 +1,4 @@
 *.pyc
 lims_env
 *.sqlite3
-lims/ENV
-lims/migrations
+isu_lims/lims/migrations
