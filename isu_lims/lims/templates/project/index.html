@@ -9,8 +9,8 @@
 
 {% if project_list %}
     <ul>
-    {% for plant in project_list %}
-        <li><a href="/lims/{{ project.id }}/">{{ project.project }}</a></li>
+    {% for project in project_list %}
+        <li><a href="/lims/project/{{ project.id }}">{{ project.project }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

@@ -9,8 +9,8 @@
 
 {% if seedpacket_list %}
     <ul>
-    {% for plant in seedpacket_list %}
-        <li><a href="/lims/{{ seedpacket.id }}/">{{ seedpacket.seedpacket }}</a></li>
+    {% for seedpacket in seedpacket_list %}
+        <li><a href="/lims/seedpacket/{{ seedpacket.id }}">{{ seedpacket.seedpacket }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

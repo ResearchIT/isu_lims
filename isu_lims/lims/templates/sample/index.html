@@ -10,7 +10,7 @@
 {% if sample_list %}
     <ul>
     {% for sample in sample_list %}
-        <li><a href="/lims/{{ sample.id }}/">{{ sample.sample }}</a></li>
+        <li><a href="/lims/sample/{{ sample.id }}">{{ sample.sample }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

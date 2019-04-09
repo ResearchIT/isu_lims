@@ -71,7 +71,7 @@ class Plant(models.Model):
     photo = models.ImageField(blank = True)
 
     def __str__(self):
-        return self.plant 
+        return self.id 
 
 # need to track who has them checked out / location (box, or desk, or storage, etc.)
 # should be in storage, but often kept at workbench
@@ -80,14 +80,14 @@ class Plant(models.Model):
 # might get shipped & not be part of collection at all anymore
 class SeedPacket(models.Model):
     notes = models.TextField(blank = True)
-    parenta = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringa', blank = True, null=True)
-    parentb = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringb', blank = True, null=True)
+    parenta = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringa', blank = True, null = True)
+    parentb = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringb', blank = True, null = True)
     quantity = models.IntegerField(default=0)
     datecollected = models.DateField(blank = True)
     accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True)
 
     def __str__(self):
-        return self.notes
+        return self.id
 
 # maybe more for hufford lab
 class Seed(models.Model):
@@ -95,18 +95,17 @@ class Seed(models.Model):
     seed_packet = models.ForeignKey(SeedPacket, on_delete=models.CASCADE, blank = True)
 
     def __str__(self):
-        return self.seed
+        return self.id
 
 # needs to relate to plants & samples too
 class Project(models.Model):
-    name = models.CharField(max_length=200, blank = True)
+    project = models.CharField(max_length=200, blank = True)
     startdate = models.DateField(auto_now_add = True, null = True, blank = True)
     enddate = models.DateField(auto_now_add = True, null = True, blank = True)
-    url = models.URLField(blank = True)
+    url = models.URLField(blank = True, null = True)
     grant = models.TextField(blank = True)
     # need agency & grant number
     lead = models.CharField(max_length=100, blank = True)
-    projecturl = models.URLField(max_length=300, blank = True)
 
     def __str__(self):
         return self.project
@@ -125,6 +124,7 @@ SAMPLE_TYPE_CHOICES = (
 )
 
 class Sample(models.Model):
+    sample = models.CharField(max_length=200, blank = True)
     type = models.CharField(max_length=1, choices=SAMPLE_TYPE_CHOICES)
     notes = models.TextField
     plant = models.ForeignKey('Plant', on_delete=models.CASCADE, blank = True)
@@ -142,3 +142,9 @@ class Sample(models.Model):
 #pcr free or not
 #coverage
 #strategy (paired or single) pe-150,se-150, .etc.
+
+class Staff(models.Model):
+    staffname = models.CharField(max_length=200, blank = True)
+
+    def __str__(self):
+        return self.staffname
