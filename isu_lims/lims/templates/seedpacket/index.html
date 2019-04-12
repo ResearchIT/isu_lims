@@ -10,7 +10,7 @@
 {% if seedpacket_list %}
     <ul>
     {% for seedpacket in seedpacket_list %}
-        <li><a href="/lims/seedpacket/{{ seedpacket.id }}">{{ seedpacket.seedpacket }}</a></li>
+        <li><a href="/lims/seedpacket/{{ seedpacket.id }}">{{ seedpacket.id }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

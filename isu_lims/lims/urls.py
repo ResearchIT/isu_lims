@@ -10,6 +10,7 @@ from .views import SeedPacketDetailView
 from .views import SeedDetailView
 from .views import ProjectDetailView
 from .views import SampleDetailView
+from .views import newseedpacket
 
 urlpatterns = [
     path('', views.index, name='index'),

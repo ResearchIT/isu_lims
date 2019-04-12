@@ -10,7 +10,7 @@
 {% if plant_list %}
     <ul>
     {% for plant in plant_list %}
-        <li><a href="/lims/plant/{{ plant.id }}">{{ plant.plant }}</a></li>
+        <li><a href="/lims/plant/{{ plant.id }}">{{ plant.id }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

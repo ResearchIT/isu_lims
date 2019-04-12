@@ -10,7 +10,7 @@
 {% if seed_list %}
     <ul>
     {% for seed in seed_list %}
-        <li><a href="/lims/seed/{{ seed.id }}">{{ seed.seed }}</a></li>
+        <li><a href="/lims/seed/{{ seed.id }}">{{ seed.id }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
