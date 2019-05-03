@@ -1,0 +1,20 @@
+{% load static %}
+
+{% include "iastatetheme/header.html" %}
+{% include "iastatetheme/menu.html" %}
+
+<!-- main -->
+<main role="main" id="main-content">
+  	<div class="container">
+<p>Enter a New Project</p>
+
+
+<form action="/lims/project/new" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
+</main>
+
+{% include "iastatetheme/footer.html" %}

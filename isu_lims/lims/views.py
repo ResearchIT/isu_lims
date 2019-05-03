@@ -248,3 +248,102 @@ class SampleDetailView(DetailView):
         # Add in a QuerySet of all the samples
         context['sample_list'] = Sample.objects.all()
         return context
+
+from .forms import NewGenusForm
+def newgenus(request):
+    if request.method == 'POST':
+        form = NewGenusForm(request.POST)
+        if form.is_valid():
+            genus = form.save()
+            return HttpResponseRedirect('new')
+    else:
+        form = NewGenusForm()
+    return render(request, 'genera/newgenusform.html', {'form': form})
+
+from .forms import NewSubgenusForm
+def newsubgenus(request):
+    if request.method == 'POST':
+        form = NewSubgenusForm(request.POST)
+        if form.is_valid():
+            subgenus = form.save()
+            return HttpResponseRedirect('new')
+    else:
+        form = NewSubgenusForm()
+    return render(request, 'subgenera/newsubgenusform.html', {'form': form})
+
+from .forms import NewGenomeForm
+def newgenome(request):
+    if request.method == 'POST':
+        form = NewGenomeForm(request.POST)
+        if form.is_valid():
+            genome = form.save()
+            return HttpResponseRedirect('new')
+    else:
+        form = NewGenomeForm()
+    return render(request, 'genome/newgenomeform.html', {'form': form})
+
+from .forms import NewSpeciesForm
+def newspecies(request):
+    if request.method == 'POST':
+        form = NewSpeciesForm(request.POST)
+        if form.is_valid():
+            species = form.save()
+            return HttpResponseRedirect('new')
+    else:
+        form = NewSpeciesForm()
+    return render(request, 'species/newspeciesform.html', {'form': form})
+
+from .forms import NewAccessionForm
+def newaccession(request):
+    if request.method == 'POST':
+        form = NewAccessionForm(request.POST)
+        if form.is_valid():
+            accession = form.save()
+            return HttpResponseRedirect('new')
+    else:
+        form = NewAccessionForm()
+    return render(request, 'accession/newaccessionform.html', {'form': form})
+
+from .forms import NewPlantForm
+def newplant(request):
+    if request.method == 'POST':
+        form = NewPlantForm(request.POST)
+        if form.is_valid():
+            plant = form.save()
+            return HttpResponseRedirect('new')
+    else:
+        form = NewPlantForm()
+    return render(request, 'plant/newplantform.html', {'form': form})
+
+from .forms import NewSeedForm
+def newseed(request):
+    if request.method == 'POST':
+        form = NewSeedForm(request.POST)
+        if form.is_valid():
+            seed = form.save()
+            return HttpResponseRedirect('new')
+    else:
+        form = NewSeedForm()
+    return render(request, 'seed/newseedform.html', {'form': form})
+
+from .forms import NewProjectForm
+def newproject(request):
+    if request.method == 'POST':
+        form = NewProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save()
+            return HttpResponseRedirect('new')
+    else:
+        form = NewProjectForm()
+    return render(request, 'project/newprojectform.html', {'form': form})
+    
+from .forms import NewSampleForm
+def newsample(request):
+    if request.method == 'POST':
+        form = NewSampleForm(request.POST)
+        if form.is_valid():
+            sample = form.save()
+            return HttpResponseRedirect('new')
+    else:
+        form = NewSampleForm()
+    return render(request, 'sample/newsampleform.html', {'form': form})
