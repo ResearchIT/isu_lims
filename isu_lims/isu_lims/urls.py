@@ -19,6 +19,4 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('lims/', include('lims.urls')),
-    path('lims/genera', include('lims.urls'))
-    #path('lims/subgenera', include('lims.urls'))
 ]

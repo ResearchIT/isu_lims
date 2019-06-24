@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lims.apps.LimsConfig',
     'iastatetheme.apps.IastatethemeConfig',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
