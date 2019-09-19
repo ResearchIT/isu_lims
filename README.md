@@ -15,7 +15,7 @@ The system is built with [django] 2.x, and python3
 * install virtualenv: `pip3 install virtualenv`
 * `virtualenv lims_env -p $(which python3)`
 * `source lims_env/bin/activate`
-* `pip install django`
+* `pip install -r requirements`
 
 [django]: https://www.djangoproject.com/
 
