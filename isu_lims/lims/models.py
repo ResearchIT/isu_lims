@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+import enum
 
 class Genus(models.Model):
     genus = models.CharField(max_length=200)
@@ -37,19 +38,24 @@ class Species(models.Model):
     def __str__(self):
         return self.species
 
-WILD = 'W'
-DOMESTICATED = 'D'
-LANDRACE = 'L'
-UNKNOWN = 'U'
-ACCESSION_TYPE_CHOICES = (
-    (WILD, 'Wild'),
-    (DOMESTICATED, 'Domesticated'),
-    (LANDRACE, 'Landrace'),
-    (UNKNOWN, 'Unknown'),
-)
+
 
 #admin only
 class Accession(models.Model):
+
+    class EAccessionType(enum.Enum):
+        WILD = 'W'
+        DOMESTICATED = 'D'
+        LANDRACE = 'L'
+        UNKNOWN = 'U'
+
+    ACCESSION_TYPE_CHOICES = (
+        (EAccessionType.WILD.value, 'Wild'),
+        (EAccessionType.DOMESTICATED.value, 'Domesticated'),
+        (EAccessionType.LANDRACE.value, 'Landrace'),
+        (EAccessionType.UNKNOWN.value, 'Unknown'),
+    )
+
     accession = models.CharField(max_length=200, blank = True)
     status = models.CharField(max_length=1, choices=ACCESSION_TYPE_CHOICES, blank = True, null = True)
     species = models.ForeignKey(Species, on_delete=models.CASCADE, blank = True, null = True)
@@ -61,12 +67,6 @@ class Accession(models.Model):
     def __str__(self):
         return self.accession
 
-YES = 'Y'
-NO = 'N'
-YESNO_TYPE_CHOICES = (
-    (YES, 'Yes'),
-    (NO, 'No'),
-)
 # needs to relate to plants & samples too
 class Project(models.Model):
     project = models.CharField(max_length=200, blank = True)
@@ -91,7 +91,7 @@ class Plant(models.Model):
     fromseed = models.ForeignKey('Seed', on_delete=models.CASCADE, blank = True, null = True)
     location = models.CharField(max_length=200, blank = True)
     photo = models.ImageField(blank = True)
-    flowering = models.CharField(max_length=1, choices=YESNO_TYPE_CHOICES, blank = True, null = True)
+    flowering = models.BooleanField(null = True)
     sample = models.ForeignKey('Sample', on_delete=models.CASCADE, blank = True, null = True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank = True, null = True)
 
@@ -123,33 +123,30 @@ class Seed(models.Model):
     def __str__(self):
         return self.id
 
-DNA = 'D'
-RNA = 'R'
-PROTEIN = 'P'
-EPIGENETIC = 'E'
-OTHER = 'O'
-SAMPLE_TYPE_CHOICES = (
-    (DNA, 'DNA'),
-    (RNA, 'RNA'),
-    (PROTEIN, 'Protein'),
-    (EPIGENETIC, 'Epigenetic'),
-    (OTHER, 'Other'),
-)
-
-YES = 'Y'
-NO = 'N'
-YESNO_TYPE_CHOICES = (
-    (YES, 'Yes'),
-    (NO, 'No'),
-)
 
 class Sample(models.Model):
+
+    class ESampleType(enum.Enum):
+        DNA = 'D'
+        RNA = 'R'
+        PROTEIN = 'P'
+        EPIGENETIC = 'E'
+        OTHER = 'O'
+
+    SAMPLE_TYPE_CHOICES = (
+        (ESampleType.DNA.value, 'DNA'),
+        (ESampleType.RNA.value, 'RNA'),
+        (ESampleType.PROTEIN.value, 'Protein'),
+        (ESampleType.EPIGENETIC.value, 'Epigenetic'),
+        (ESampleType.OTHER.value, 'Other'),
+    )
+
     sample = models.CharField(max_length=200, blank = True, null = True)
     category = models.CharField(max_length=1, choices=SAMPLE_TYPE_CHOICES, null = True)
     notes = models.TextField(blank = True)
     accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True, null = True)
     sequencingcompany = models.CharField(max_length=30, blank = True)
-    pcrfree = models.CharField(max_length=1, choices=YESNO_TYPE_CHOICES, null = True)
+    pcrfree = models.BooleanField(null = True)
     sranumber = models.CharField(max_length=15, blank = True)
     coverage = models.CharField(max_length=15, blank = True)
     strategy = models.CharField(max_length=20, blank = True)
