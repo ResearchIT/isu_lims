@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lims.apps.LimsConfig',
-    'iastatetheme.apps.IastatethemeConfig',
-    'django_extensions'
+    'isu_lims.apps.IsulimsThemeConfig'
 ]
 
 MIDDLEWARE = [
@@ -65,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'iastatetheme.context_processors.theme_config',
             ],
         },
     },

@@ -1,0 +1,3 @@
+[submodule "isu_lims/iastatetheme"]
+	path = isu_lims/iastatetheme
+	url = https://github.com/ResearchIT/iastatetheme.git

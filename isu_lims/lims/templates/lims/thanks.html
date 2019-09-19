@@ -1,14 +1,7 @@
-{% load static %}
+{% extends "iastatetheme/base.html" %}
 
-{% include "iastatetheme/header.html" %}
-{% include "iastatetheme/menu.html" %}
-
-<!-- main -->
-<main role="main" id="main-content">
-  	<div class="container">
-
-Thank you!
-
-</main>
-
-{% include "iastatetheme/footer.html" %}
+{% block content %}
+    <div class="container">
+        Thank you!
+    </div>
+{% endblock %}
