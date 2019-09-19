@@ -10,7 +10,7 @@ The system is built with [django] 2.x, and python3
 * python3
 
 ### Setup a development environment
-* clone this repo
+* clone this repo with `git clone recursive`
 * open a shell, and cd into this directory
 * install virtualenv: `pip3 install virtualenv`
 * `virtualenv lims_env -p $(which python3)`
