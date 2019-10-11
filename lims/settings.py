@@ -25,7 +25,12 @@ SECRET_KEY = '2$r@9!q(_(xr_+!z)(_hzs$9%f@zgw8fcy86vdp^e53t*eelzw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*.apps.openshift.las.iastate.edu',
+    'localhost', 
+    '127.0.0.1', 
+    '[::1]'
+]
 
 
 # Application definition
