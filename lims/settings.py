@@ -26,7 +26,7 @@ SECRET_KEY = '2$r@9!q(_(xr_+!z)(_hzs$9%f@zgw8fcy86vdp^e53t*eelzw'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '*.apps.openshift.las.iastate.edu',
+    '.apps.openshift.las.iastate.edu',
     'localhost', 
     '127.0.0.1', 
     '[::1]'
