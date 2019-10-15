@@ -12,10 +12,15 @@ call_command('migrate', no_input=True)
 call_command('makemigrations', 'lims')
 call_command('migrate', no_input=True)
 from django.contrib.auth.models import User
-u = User.objects.get(username='admin')
-u.set_password('password')
-u.email = 'njbooher@iastate.edu'
-u.is_superuser = True
-u.is_staff = True
-u.save()
+try:
+    User.objects.create_superuser(username="admin", password="password", email="njbooher@iastate.edu")
+    print("Create superuser worked\n")
+except:
+    print("Super user already exists, updating its email and password\n")
+    u = User.objects.get(username='admin')
+    u.set_password('password')
+    u.email = 'njbooher@iastate.edu'
+    u.is_superuser = True
+    u.is_staff = True
+    u.save()
 call_command('runserver', '0.0.0.0:8080')
