@@ -8,6 +8,7 @@ django.setup()
 
 from lims import settings
 import shutil
+os.remove(os.path.join(settings.BASE_DIR, 'db.sqlite3'))
 shutil.rmtree(os.path.join(settings.BASE_DIR, 'lims', 'migrations'), ignore_errors=True)
 
 from django.core.management import call_command
