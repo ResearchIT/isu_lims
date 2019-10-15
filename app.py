@@ -58,12 +58,12 @@ standard_group.save()
 
 # create user in admin group
 
-admin_user = User.objects.create_user(username='admin_user', email='njbooher@iastate.edu', password='password12345')
+admin_user = User.objects.create_user(username='admin_user', email='njbooher@iastate.edu', password='password12345', is_staff=True)
 admin_user.groups.set([admin_group])
 
 # create user in standard group
 
-standard_user = User.objects.create_user(username='standard_user', email='njbooher@iastate.edu', password='password12345')
+standard_user = User.objects.create_user(username='standard_user', email='njbooher@iastate.edu', password='password12345', is_staff=True)
 standard_user.groups.set([standard_group])
 
 # run dev server
