@@ -96,7 +96,7 @@ class Plant(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank = True, null = True)
 
     def __str__(self):
-        return self.id 
+        return str(self.id)
 
 # need to track who has them checked out / location (box, or desk, or storage, etc.)
 # should be in storage, but often kept at workbench
@@ -114,14 +114,14 @@ class SeedPacket(models.Model):
     checkedoutby = models.CharField(max_length=20, blank = True)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 # maybe more for hufford lab
 class Seed(models.Model):
     notes = models.TextField(blank = True)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Sample(models.Model):
