@@ -50,7 +50,7 @@ for model in apps.all_models['lims']:
 
 standard_group.permissions.add(Permission.objects.get(codename='change_project'))
 
-for model in ['plant', 'sample', 'seed', 'seedpacket']:
+for model in ['plant', 'sample', 'seedpacket']:
     standard_group.permissions.add(Permission.objects.get(codename='add_' + model))
     standard_group.permissions.add(Permission.objects.get(codename='change_' + model))
 
