@@ -1,14 +1,30 @@
 from django.contrib import admin
 
-# Register your models here.
-from .models import *
+import nested_admin
 
-admin.site.register(Genus)
-admin.site.register(Subgenus)
-admin.site.register(Species)
-admin.site.register(Genome)
-admin.site.register(Accession)
-admin.site.register(Plant)
-admin.site.register(SeedPacket)
-admin.site.register(Project)
-admin.site.register(Sample)
+# Register your models here.
+from . import models
+
+admin.site.register(models.Genus)
+admin.site.register(models.Subgenus)
+admin.site.register(models.Species)
+admin.site.register(models.Genome)
+admin.site.register(models.Accession)
+admin.site.register(models.SeedPacket)
+admin.site.register(models.Project)
+admin.site.register(models.Sample)
+
+class PlantPhotoTabularInline(nested_admin.NestedTabularInline):
+    model = models.PlantPhoto
+    raw_id_fields = ('plant',)
+
+class HerbariumTabularInline(nested_admin.NestedTabularInline):
+    model = models.Herbarium
+    raw_id_fields = ('plant',)
+
+@admin.register(models.Plant)
+class PlantAdmin(nested_admin.NestedModelAdmin):
+    inlines = [
+        PlantPhotoTabularInline,
+        HerbariumTabularInline,
+    ]

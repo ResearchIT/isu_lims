@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lims.apps.LimsConfig',
-    'lims.apps.IsulimsThemeConfig'
+    'lims.apps.IsulimsThemeConfig',
+    'nested_admin',
 ]
 
 MIDDLEWARE = [
