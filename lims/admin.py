@@ -13,6 +13,7 @@ admin.site.register(models.Accession)
 admin.site.register(models.SeedPacket)
 admin.site.register(models.Project)
 admin.site.register(models.Sample)
+admin.site.register(models.Herbarium)
 
 class PlantPhotoTabularInline(nested_admin.NestedTabularInline):
     model = models.PlantPhoto
