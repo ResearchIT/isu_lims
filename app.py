@@ -32,10 +32,13 @@ from django.contrib.contenttypes.models import ContentType
 admin_group, created = Group.objects.get_or_create(name='Admin')
 
 for model in apps.all_models['lims']:
-    content_type = ContentType.objects.get(
-        app_label='lims',
-        model=model
-    )
+    try:
+        content_type = ContentType.objects.get(
+            app_label='lims',
+            model=model
+        )
+    except ContentType.DoesNotExist:
+        continue
     permissions = Permission.objects.filter(content_type=content_type)
     admin_group.permissions.add(*permissions)
 
@@ -46,11 +49,13 @@ admin_group.save()
 standard_group, created = Group.objects.get_or_create(name='Standard')
 
 for model in apps.all_models['lims']:
-    standard_group.permissions.add(Permission.objects.get(codename='view_' + model))
-
+    try:
+        standard_group.permissions.add(Permission.objects.get(codename='view_' + model))
+    except Permission.DoesNotExist:
+        continue
 standard_group.permissions.add(Permission.objects.get(codename='change_project'))
 
-for model in ['plant', 'sample', 'seedpacket']:
+for model in ['plant', 'plantphoto', 'sample', 'seedpacket', 'herbarium']:
     standard_group.permissions.add(Permission.objects.get(codename='add_' + model))
     standard_group.permissions.add(Permission.objects.get(codename='change_' + model))
 
