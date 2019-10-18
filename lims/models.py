@@ -92,7 +92,6 @@ class Plant(models.Model):
     location = models.CharField(max_length=200, blank = True)
     photo = models.ImageField(blank = True)
     flowering = models.BooleanField(null = True)
-    sample = models.ForeignKey('Sample', on_delete=models.CASCADE, blank = True, null = True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank = True, null = True)
 
     def __str__(self):
@@ -141,6 +140,7 @@ class Sample(models.Model):
         (ESampleType.OTHER.value, 'Other'),
     )
 
+    plant = models.ForeignKey(Plant, on_delete=models.CASCADE, blank = True, null = True)
     sample = models.CharField(max_length=200, blank = True, null = True)
     category = models.CharField(max_length=1, choices=SAMPLE_TYPE_CHOICES, null = True)
     notes = models.TextField(blank = True)
