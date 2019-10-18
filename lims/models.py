@@ -158,6 +158,8 @@ class Sample(models.Model):
     trackingnumber = models.CharField(max_length=100, blank = True)
     sequenceinstrument = models.CharField(max_length=100, blank = True)
     tissue_type = MultiSelectField(choices=TISSUE_TYPE_CHOICES, blank = True)
+    time_point = models.CharField(max_length=200, blank = True)
+    dev_time_point = models.CharField(max_length=200, blank = True)
 
     def __str__(self):
         return self.sample
