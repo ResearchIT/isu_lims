@@ -88,7 +88,7 @@ class Project(models.Model):
 class Plant(models.Model):
     notes = models.TextField(blank = True)
     accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True, null = True)
-    fromseed = models.ForeignKey('Seed', on_delete=models.CASCADE, blank = True, null = True)
+    fromseedpacket = models.ForeignKey('SeedPacket', on_delete=models.CASCADE, blank = True, null = True)
     location = models.CharField(max_length=200, blank = True)
     photo = models.ImageField(blank = True)
     flowering = models.BooleanField(null = True)
@@ -114,14 +114,6 @@ class SeedPacket(models.Model):
 
     def __str__(self):
         return str(self.id)
-
-# maybe more for hufford lab
-class Seed(models.Model):
-    notes = models.TextField(blank = True)
-
-    def __str__(self):
-        return str(self.id)
-
 
 class Sample(models.Model):
 
