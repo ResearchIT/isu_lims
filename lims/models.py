@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from datetime import date
 import enum
 
@@ -110,7 +111,7 @@ class SeedPacket(models.Model):
     datecollected = models.DateField(blank = True)
     accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True, null = True)
     location = models.CharField(max_length=100, blank = True)
-    checkedoutby = models.CharField(max_length=20, blank = True)
+    checkedoutby = models.ForeignKey(User, on_delete=models.CASCADE, blank = True, null = True)
 
     def __str__(self):
         return str(self.id)
@@ -156,9 +157,3 @@ class Sample(models.Model):
 #pcr free or not
 #coverage
 #strategy (paired or single) pe-150,se-150, .etc.
-
-class Staff(models.Model):
-    staffname = models.CharField(max_length=200, blank = True)
-
-    def __str__(self):
-        return self.staffname
