@@ -89,11 +89,11 @@ class Project(models.Model):
 class Plant(models.Model):
     notes = models.TextField(blank = True)
     accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True, null = True)
+    project = models.ManyToManyField(Project)
     fromseedpacket = models.ForeignKey('SeedPacket', on_delete=models.CASCADE, blank = True, null = True)
     location = models.CharField(max_length=200, blank = True)
     photo = models.ImageField(blank = True)
     flowering = models.BooleanField(null = True)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, blank = True, null = True)
 
     def __str__(self):
         return self.accession.species.genome.subgenus.genus + ' ' + self.accession.species + ' ' + self.accession.accession
@@ -134,6 +134,7 @@ class Sample(models.Model):
     )
 
     plant = models.ForeignKey(Plant, on_delete=models.CASCADE, blank = True, null = True)
+    project = models.ManyToManyField(Project)
     sample = models.CharField(max_length=200, blank = True, null = True)
     category = models.CharField(max_length=1, choices=SAMPLE_TYPE_CHOICES, null = True)
     notes = models.TextField(blank = True)
