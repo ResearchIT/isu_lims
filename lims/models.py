@@ -95,7 +95,7 @@ class Plant(models.Model):
     flowering = models.BooleanField(null = True)
 
     def __str__(self):
-        return self.accession.species.genome.subgenus.genus + ' ' + self.accession.species + ' ' + self.accession.accession
+        return self.accession.species.genome.subgenus.genus.genus + ' ' + self.accession.species.species + ' ' + self.accession.accession
 
 # need to track who has them checked out / location (box, or desk, or storage, etc.)
 # should be in storage, but often kept at workbench
@@ -113,7 +113,7 @@ class SeedPacket(models.Model):
     checkedoutby = models.ForeignKey(User, on_delete=models.CASCADE, blank = True, null = True)
 
     def __str__(self):
-        return self.accession.species.genome.subgenus.genus + ' ' + self.accession.species + ' ' + self.accession.accession
+        return self.accession.species.genome.subgenus.genus.genus + ' ' + self.accession.species.species + ' ' + self.accession.accession
 
 class Sample(models.Model):
 
