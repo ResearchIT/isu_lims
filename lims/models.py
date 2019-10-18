@@ -153,6 +153,12 @@ class PlantPhoto(models.Model):
     plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
     photo = models.ImageField(blank = True)
 
+class Herbarium(models.Model):
+    barcode = models.IntegerField(primary_key=True)
+    plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
+    photo = models.ImageField()
+    collector = models.CharField(max_length=200)
+
 #sequencing tech
 #sequencing center
 #sequencing company
