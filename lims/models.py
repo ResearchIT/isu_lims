@@ -92,7 +92,6 @@ class Plant(models.Model):
     project = models.ManyToManyField(Project)
     fromseedpacket = models.ForeignKey('SeedPacket', on_delete=models.CASCADE, blank = True, null = True)
     location = models.CharField(max_length=200, blank = True)
-    photo = models.ImageField(blank = True)
     flowering = models.BooleanField(null = True)
 
     def __str__(self):
@@ -149,6 +148,10 @@ class Sample(models.Model):
 
     def __str__(self):
         return self.sample
+
+class PlantPhoto(models.Model):
+    plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
+    photo = models.ImageField(blank = True)
 
 #sequencing tech
 #sequencing center
