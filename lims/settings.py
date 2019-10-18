@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'lims.apps.LimsConfig',
     'lims.apps.IsulimsThemeConfig',
     'nested_admin',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [

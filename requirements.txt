@@ -3,3 +3,4 @@ Pillow~=6.1.0
 gunicorn~=19.9.0
 whitenoise~=4.1.4
 django-nested-admin~=3.2.3
+django-multiselectfield~=0.1.9
