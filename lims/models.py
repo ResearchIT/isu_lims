@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 import enum
-from multiselectfield import MultiSelectField
 
 class Genus(models.Model):
     genus = models.CharField(max_length=200)
@@ -118,17 +117,6 @@ class SeedPacket(models.Model):
 
 class Sample(models.Model):
 
-    class ETissueType(enum.Enum):
-        KLEENEX = 'Kleenex'
-        PUFFS = 'Puffs'
-        GREATVALUE = 'GreatValue'
-
-    TISSUE_TYPE_CHOICES = (
-        (ETissueType.KLEENEX.value, 'Kleenex'),
-        (ETissueType.PUFFS.value, 'Puffs'),
-        (ETissueType.GREATVALUE.value, 'Great Value'),
-    )
-
     class ESampleType(enum.Enum):
         DNA = 'D'
         RNA = 'R'
@@ -157,7 +145,7 @@ class Sample(models.Model):
     strategy = models.CharField(max_length=20, blank = True)
     trackingnumber = models.CharField(max_length=100, blank = True)
     sequenceinstrument = models.CharField(max_length=100, blank = True)
-    tissue_type = MultiSelectField(choices=TISSUE_TYPE_CHOICES, blank = True)
+    tissue_type = models.CharField(max_length=200, blank = True, null = True)
     time_point = models.CharField(max_length=200, blank = True)
     dev_time_point = models.CharField(max_length=200, blank = True)
 
