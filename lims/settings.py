@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'lims.apps.LimsConfig',
     'lims.apps.IsulimsThemeConfig',
     'nested_admin',
+    'bootstrap3',
+    'django_tables2',
 ]
 
 MIDDLEWARE = [

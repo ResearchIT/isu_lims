@@ -1,0 +1,30 @@
+{% extends "iastatetheme/base.html" %}
+
+{% load django_tables2 %}
+{% load bootstrap3 %}
+
+{% block content %}
+    {% if container_fluid %}
+        <div class="container-fluid">
+    {% else %}
+        <div class="container">
+    {% endif %}
+    {% if filter %}
+        <form action="" method="get" class="form form-inline">
+            {% bootstrap_form filter.form layout='inline' %}
+            {% bootstrap_button 'filter' %}
+        </form>
+    {% endif %}
+    {% for format in view.export_formats %}
+    <a href="{% export_url format %}">
+        download  <code>.{{ format }}</code>
+    </a>
+    {% endfor %}
+
+    {% render_table table %}
+    
+    <p>There are {{ table.rows | length }} results</p>
+
+    </div>
+{% endblock %}
+

@@ -3,53 +3,31 @@
 {% block content %}
     <div class="container">
 
-		<p>
+		<h1>
 			Welcome to LIMS
-			</p>
-			
-			Check out the <a href=genera>Genera</a><br>
-			
-			Check out the <a href=subgenera>Subgenera</a><br>
-			
-			Check out <a href=genome>Genomes</a><br>
-			
-			Check out <a href=species>Species</a><br>
-			
-			Check out <a href=accession>Accessions</a><br>
-			
-			Check out <a href=plant>Plants</a><br>
-			
-			Check out <a href=seedpacket>Seed Packets</a><br>
-			
-			Check out <a href=seed>Seeds</a><br>
-			
-			Check out <a href=project>Projects</a><br>
-			
-			Check out <a href=sample>Samples</a><br>
+		</h1>
+
+		<h2>Tables</h2>
+
+		<ul>
+			<li>Check out the <a href="{% url 'genera' %}">Genera</a></li>
+			<li>Check out the <a href="{% url 'subgenera' %}">Subgenera</a></li>
+			<li>Check out <a href="{% url 'genome' %}">Genomes</a></li>
+			<li>Check out <a href="{% url 'species' %}">Species</a></li>
+			<li>Check out <a href="{% url 'accession' %}">Accessions</a></li>
+			<li>Check out <a href="{% url 'plant' %}">Plants</a></li>
+			<li>Check out <a href="{% url 'seedpacket' %}">Seed Packets</a></li>
+			<li>Check out <a href="{% url 'project' %}">Projects</a></li>
+			<li>Check out <a href="{% url 'sample' %}">Samples</a></li>
+			<li>Check out <a href="{% url 'herbarium' %}">Herbariums</a></li>
+		</ul>
 			
 			
-			</p>
-			Missing something? 
+			<h2>Missing something?</h2>
+			
 			<p>
-			Add new genera <a href=genus/new>here</a><br>
-			
-			Add new subgenera <a href=subgenus/new>here</a><br>
-			
-			Add new genomes <a href=genome/new>here</a><br>
-			
-			Add new species <a href=species/new>here</a><br>
-			
-			Add new accessions <a href=accession/new>here</a><br>
-			
-			Add new plants <a href=plant/new>here</a><br>
-			
-			Add new seedpackets <a href=seedpacket/new>here</a><br>
-			
-			Add new seeds <a href=seed/new>here</a><br>
-			
-			Add new projects <a href=project/new>here</a><br>
-			
-			Add new samples <a href=sample/new>here</a>
+			Add it in the <a href="/admin">admin section</a>
+			</p>
 
     </div>
 {% endblock %}
