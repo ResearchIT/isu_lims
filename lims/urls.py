@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('_nested_admin/', include('nested_admin.urls')),
     path('genera', views.GeneraTableView.as_view(), name='genera'),
     path('subgenera', views.SubGeneraTableView.as_view(), name='subgenera'),
