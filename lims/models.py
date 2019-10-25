@@ -13,8 +13,8 @@ class Genus(models.Model):
         return self.genus
 
 class Subgenus(models.Model):
-    subgenus = models.CharField(max_length=200, blank = True)
-    genus = models.ForeignKey(Genus, on_delete=models.CASCADE, blank = True, null = True)
+    subgenus = models.CharField(max_length=200)
+    genus = models.ForeignKey(Genus, on_delete=models.CASCADE)
     
     class Meta:
         verbose_name_plural = "SubGenera"
@@ -23,15 +23,15 @@ class Subgenus(models.Model):
         return self.subgenus
 
 class Genome(models.Model):
-    genome = models.CharField(max_length=200, blank = True)
-    subgenus = models.ForeignKey(Subgenus, on_delete=models.CASCADE, blank = True, null = True)
+    genome = models.CharField(max_length=200)
+    subgenus = models.ForeignKey(Subgenus, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.genome
 
 class Species(models.Model):
-    species = models.CharField(max_length=200, blank = True)
-    genome = models.ForeignKey(Genome, on_delete=models.CASCADE, blank = True, null = True)
+    species = models.CharField(max_length=200)
+    genome = models.ForeignKey(Genome, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Species"
@@ -57,9 +57,9 @@ class Accession(models.Model):
         (EAccessionType.UNKNOWN.value, 'Unknown'),
     )
 
-    accession = models.CharField(max_length=200, blank = True)
+    accession = models.CharField(max_length=200)
     status = models.CharField(max_length=1, choices=ACCESSION_TYPE_CHOICES, blank = True, null = True)
-    species = models.ForeignKey(Species, on_delete=models.CASCADE, blank = True, null = True)
+    species = models.ForeignKey(Species, on_delete=models.CASCADE)
     alternatenames = models.CharField(max_length=100, blank = True)
     pinumber = models.CharField(max_length=30, blank = True)
     # add alternate names
@@ -88,7 +88,7 @@ class Project(models.Model):
 # flowering or not
 class Plant(models.Model):
     notes = models.TextField(blank = True)
-    accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True, null = True)
+    accession = models.ForeignKey(Accession, on_delete=models.CASCADE)
     project = models.ManyToManyField(Project)
     fromseedpacket = models.ForeignKey('SeedPacket', on_delete=models.CASCADE, blank = True, null = True)
     location = models.CharField(max_length=200, blank = True)
@@ -134,7 +134,7 @@ class Sample(models.Model):
 
     plant = models.ForeignKey(Plant, on_delete=models.CASCADE, blank = True, null = True)
     project = models.ManyToManyField(Project)
-    sample = models.CharField(max_length=200, blank = True, null = True)
+    sample = models.CharField(max_length=200)
     category = models.CharField(max_length=1, choices=SAMPLE_TYPE_CHOICES, null = True)
     notes = models.TextField(blank = True)
     accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True, null = True)
@@ -154,7 +154,7 @@ class Sample(models.Model):
 
 class PlantPhoto(models.Model):
     plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
-    photo = models.ImageField(blank = True)
+    photo = models.ImageField()
 
 class Herbarium(models.Model):
     barcode = models.IntegerField(primary_key=True)
