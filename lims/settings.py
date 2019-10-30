@@ -26,6 +26,7 @@ SECRET_KEY = os.getenv('LIMS_SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
+    'wendel-lims.eeob.iastate.edu',
     '.apps.openshift.las.iastate.edu',
     'localhost', 
     '127.0.0.1', 
