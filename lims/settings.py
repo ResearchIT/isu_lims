@@ -89,6 +89,9 @@ WSGI_APPLICATION = 'lims.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        },
         'NAME': os.getenv('LIMS_DATABASE_NAME'),
         'USER': os.getenv('LIMS_DATABASE_USER'),
         'PASSWORD': os.getenv('LIMS_DATABASE_PASSWORD'),
