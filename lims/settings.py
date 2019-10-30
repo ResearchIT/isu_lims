@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2$r@9!q(_(xr_+!z)(_hzs$9%f@zgw8fcy86vdp^e53t*eelzw'
+SECRET_KEY = os.getenv('LIMS_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -87,8 +87,12 @@ WSGI_APPLICATION = 'lims.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('LIMS_DATABASE_NAME'),
+        'USER': os.getenv('LIMS_DATABASE_USER'),
+        'PASSWORD': os.getenv('LIMS_DATABASE_PASSWORD'),
+        'HOST': os.getenv('LIMS_DATABASE_HOST'),
+        'PORT': os.getenv('LIMS_DATABASE_PORT'),
     }
 }
 
