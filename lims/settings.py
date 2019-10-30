@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2$r@9!q(_(xr_+!z)(_hzs$9%f@zgw8fcy86vdp^e53t*eelzw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '.apps.openshift.las.iastate.edu',
