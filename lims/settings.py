@@ -150,7 +150,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/var/log/django.log',
+            'filename': os.getenv('LIMS_LOG_FILE'),
         },
     },
     'loggers': {
