@@ -8,35 +8,33 @@
 		</h1>
 
 		<h2>User</h2>
-		<p>
+
 		{% if user.is_authenticated %}
-			Current user: {{ user.email }}
+			<p>Current user: {{ user.email }}</p>
+			<p><a href="{% url 'oidc_logout' %}">Logout</a></p>
+
+			<h2>Tables</h2>
+
+			<ul>
+				<li>Check out the <a href="{% url 'genera' %}">Genera</a></li>
+				<li>Check out the <a href="{% url 'subgenera' %}">Subgenera</a></li>
+				<li>Check out <a href="{% url 'genome' %}">Genomes</a></li>
+				<li>Check out <a href="{% url 'species' %}">Species</a></li>
+				<li>Check out <a href="{% url 'accession' %}">Accessions</a></li>
+				<li>Check out <a href="{% url 'plant' %}">Plants</a></li>
+				<li>Check out <a href="{% url 'seedpacket' %}">Seed Packets</a></li>
+				<li>Check out <a href="{% url 'project' %}">Projects</a></li>
+				<li>Check out <a href="{% url 'sample' %}">Samples</a></li>
+				<li>Check out <a href="{% url 'herbarium' %}">Herbariums</a></li>
+			</ul>
+				
+				
+			<h2>Missing something?</h2>
+			
+			<p>Add it in the <a href="/admin">admin section</a></p>
 		{% else %}
 			<a href="{% url 'oidc_authentication_init' %}">Login</a>
 		{% endif %}
-		</p>
-		
-		<h2>Tables</h2>
-
-		<ul>
-			<li>Check out the <a href="{% url 'genera' %}">Genera</a></li>
-			<li>Check out the <a href="{% url 'subgenera' %}">Subgenera</a></li>
-			<li>Check out <a href="{% url 'genome' %}">Genomes</a></li>
-			<li>Check out <a href="{% url 'species' %}">Species</a></li>
-			<li>Check out <a href="{% url 'accession' %}">Accessions</a></li>
-			<li>Check out <a href="{% url 'plant' %}">Plants</a></li>
-			<li>Check out <a href="{% url 'seedpacket' %}">Seed Packets</a></li>
-			<li>Check out <a href="{% url 'project' %}">Projects</a></li>
-			<li>Check out <a href="{% url 'sample' %}">Samples</a></li>
-			<li>Check out <a href="{% url 'herbarium' %}">Herbariums</a></li>
-		</ul>
-			
-			
-			<h2>Missing something?</h2>
-			
-			<p>
-			Add it in the <a href="/admin">admin section</a>
-			</p>
 
     </div>
 {% endblock %}
