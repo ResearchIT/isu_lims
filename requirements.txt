@@ -6,3 +6,4 @@ whitenoise~=4.1.4
 django-nested-admin~=3.2.3
 django-bootstrap3~=11.1.0
 django-tables2~=2.1.0
+mozilla-django-oidc~=1.2.2

@@ -7,6 +7,15 @@
 			Welcome to LIMS
 		</h1>
 
+		<h2>User</h2>
+		<p>
+		{% if user.is_authenticated %}
+			Current user: {{ user.email }}
+		{% else %}
+			<a href="{% url 'oidc_authentication_init' %}">Login</a>
+		{% endif %}
+		</p>
+		
 		<h2>Tables</h2>
 
 		<ul>

@@ -39,6 +39,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'mozilla_django_oidc',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'mozilla_django_oidc.middleware.SessionRefresh',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -161,3 +163,20 @@ LOGGING = {
         },
     },
 }
+
+# Auth Stuff
+
+# Add 'mozilla_django_oidc' authentication backend
+AUTHENTICATION_BACKENDS = (
+    'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
+    # ...
+)
+
+OIDC_RP_CLIENT_ID = os.getenv('LIMS_OIDC_RP_CLIENT_ID')
+OIDC_RP_CLIENT_SECRET = os.getenv('LIMS_OIDC_RP_CLIENT_SECRET')
+OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/authorize'
+OIDC_OP_TOKEN_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/token'
+OIDC_OP_USER_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/userinfo'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/oidc/authenticate/'
+LOGOUT_REDIRECT_URL = '/'
