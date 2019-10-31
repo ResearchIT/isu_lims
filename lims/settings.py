@@ -174,9 +174,11 @@ AUTHENTICATION_BACKENDS = (
 
 OIDC_RP_CLIENT_ID = os.getenv('LIMS_OIDC_RP_CLIENT_ID')
 OIDC_RP_CLIENT_SECRET = os.getenv('LIMS_OIDC_RP_CLIENT_SECRET')
+OIDC_RP_SIGN_ALGO = 'RS256'
 OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/authorize'
 OIDC_OP_TOKEN_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/token'
 OIDC_OP_USER_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/userinfo'
+OIDC_OP_JWKS_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/keys'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/oidc/authenticate/'
 LOGOUT_REDIRECT_URL = '/'
