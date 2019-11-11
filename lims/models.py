@@ -62,6 +62,7 @@ class Accession(models.Model):
     species = models.ForeignKey(Species, on_delete=models.CASCADE)
     alternatenames = models.CharField(max_length=100, blank = True)
     pinumber = models.CharField(max_length=30, blank = True)
+    demoboll = models.BooleanField(null = True)
     # add alternate names
     # add PI-number (USDA germplasm database - could be a link, maybe)
 
