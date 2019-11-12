@@ -155,12 +155,12 @@ class Sample(models.Model):
 
 class PlantPhoto(models.Model):
     plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to='plantphoto')
 
 class Herbarium(models.Model):
     barcode = models.IntegerField(primary_key=True)
     plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to='herbarium')
     collector = models.CharField(max_length=200)
 
 #sequencing tech
