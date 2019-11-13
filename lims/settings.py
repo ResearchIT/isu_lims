@@ -136,7 +136,15 @@ USE_TZ = False
 
 # File uploads
 
-MEDIA_ROOT = os.getenv('LIMS_FILE_UPLOAD_DIR')
+AWS_ACCESS_KEY_ID = os.getenv('LIMS_CLOUD_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.getenv('LIMS_CLOUD_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('LIMS_CLOUD_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.getenv('LIMS_CLOUD_REGION_NAME')
+AWS_S3_ENDPOINT_URL = os.getenv('LIMS_CLOUD_ENDPOINT_URL')
+AWS_S3_ADDRESSING_STYLE = "path"
+AWS_DEFAULT_ACL = None
+AWS_S3_FILE_OVERWRITE = False
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
