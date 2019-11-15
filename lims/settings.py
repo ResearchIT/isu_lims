@@ -168,7 +168,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': os.getenv('LIMS_LOG_LEVEL', 'INFO'),
             'propagate': True,
         },
     },
