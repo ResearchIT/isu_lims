@@ -11,42 +11,6 @@ def index(request):
 def thanks(request):
     return render(request, 'lims/thanks.html')
 
-class GeneraTableView(PermissionRequiredMixin, SingleTableView):
-    # django
-    model = models.Genus
-    template_name = "lims/filterable_overview_table_page.html"
-    # django-tables2
-    table_class = tables.GeneraTable
-    # PermissionRequiredMixin
-    permission_required = 'lims.view_genus'
-
-class SubGeneraTableView(PermissionRequiredMixin, SingleTableView):
-    # django
-    model = models.Subgenus
-    template_name = "lims/filterable_overview_table_page.html"
-    # django-tables2
-    table_class = tables.SubGeneraTable
-    # PermissionRequiredMixin
-    permission_required = 'lims.view_subgenus'
-
-class GenomeTableView(PermissionRequiredMixin, SingleTableView):
-    # django
-    model = models.Genome
-    template_name = "lims/filterable_overview_table_page.html"
-    # django-tables2
-    table_class = tables.GenomeTable
-    # PermissionRequiredMixin
-    permission_required = 'lims.view_genome'
-
-class SpeciesTableView(PermissionRequiredMixin, SingleTableView):
-    # django
-    model = models.Species
-    template_name = "lims/filterable_overview_table_page.html"
-    # django-tables2
-    table_class = tables.SpeciesTable
-    # PermissionRequiredMixin
-    permission_required = 'lims.view_species'
-
 class AccessionTableView(PermissionRequiredMixin, SingleTableView):
     # django
     model = models.Accession

@@ -1,34 +1,21 @@
 import django_tables2 as tables
 from . import models
 
-class GeneraTable(tables.Table):
-
-    class Meta:
-        model = models.Genus
-        template_name = 'django_tables2/bootstrap.html'
-
-class SubGeneraTable(tables.Table):
-
-    class Meta:
-        model = models.Subgenus
-        template_name = 'django_tables2/bootstrap.html'
-
-class GenomeTable(tables.Table):
-
-    class Meta:
-        model = models.Genome
-        template_name = 'django_tables2/bootstrap.html'
-
-class SpeciesTable(tables.Table):
-
-    class Meta:
-        model = models.Species
-        template_name = 'django_tables2/bootstrap.html'
-
 class AccessionTable(tables.Table):
+
+    pinumber = tables.Column(accessor='pinumber', verbose_name='Plant ID')
+    accession = tables.Column(accessor='accession', verbose_name='Plant Name')
+    genus = tables.Column(accessor='species.genome.subgenus.genus', verbose_name='Genus')
+    subgenus = tables.Column(accessor='species.genome.subgenus', verbose_name='Subgenus')
+    genome = tables.Column(accessor='species.genome', verbose_name='Genome')
+    species = tables.Column(accessor='species', verbose_name='Species')
+    demoboll = tables.BooleanColumn(accessor='demoboll', verbose_name='Demoboll', yesno='Y,N')
+    status = tables.Column(accessor='status', verbose_name='Status')
+    alternatenames = tables.Column(accessor='alternatenames', verbose_name='Alternate Names')
 
     class Meta:
         model = models.Accession
+        fields = ()
         template_name = 'django_tables2/bootstrap.html'
         
 class ProjectTable(tables.Table):

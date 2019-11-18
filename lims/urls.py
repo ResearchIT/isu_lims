@@ -20,10 +20,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('oidc/', include('mozilla_django_oidc.urls')),
-    path('genera', views.GeneraTableView.as_view(), name='genera'),
-    path('subgenera', views.SubGeneraTableView.as_view(), name='subgenera'),
-    path('genome', views.GenomeTableView.as_view(), name='genome'),
-    path('species', views.SpeciesTableView.as_view(), name='species'),
     path('accession', views.AccessionTableView.as_view(), name='accession'),
     path('project', views.ProjectTableView.as_view(), name='project'),
     path('plant', views.PlantTableView.as_view(), name='plant'),
