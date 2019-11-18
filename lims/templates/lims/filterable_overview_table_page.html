@@ -6,7 +6,12 @@
 {% block content %}
 
     <div class="container">
-
+    {% if filter %}
+        <form action="" method="get" class="form form-inline">
+            {% bootstrap_form filter.form layout='inline' %}
+            {% bootstrap_button 'filter' %}
+        </form>
+    {% endif %}
     {% render_table table %}
     
     <p>There are {{ table.rows | length }} results</p>

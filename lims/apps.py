@@ -5,10 +5,6 @@ class IsulimsThemeConfig(IastatethemeConfig):
     site_name = 'LIMS'
     menu = [
         MenuItem("Tables", "/", [
-            MenuItem("Genera", "/genera"),
-            MenuItem("Subgenera", "/subgenera"),
-            MenuItem("Genomes", "/genome"),
-            MenuItem("Species", "/species"),
             MenuItem("Accessions", "/accession"),
             MenuItem("Plant", "/plant"),
             MenuItem("Seed Packets", "/seedpacket"),

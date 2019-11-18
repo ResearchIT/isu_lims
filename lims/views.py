@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django_tables2 import SingleTableView
+from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
-from . import models, tables
+from . import models, tables, filters
 
 def index(request):
     return render(request, 'lims/index.html')
@@ -11,7 +12,7 @@ def index(request):
 def thanks(request):
     return render(request, 'lims/thanks.html')
 
-class AccessionTableView(PermissionRequiredMixin, SingleTableView):
+class AccessionTableView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     # django
     queryset = models.Accession.objects.select_related('species', 'species__genome', 'species__genome__subgenus', 'species__genome__subgenus__genus')
     template_name = "lims/filterable_overview_table_page.html"
@@ -19,6 +20,8 @@ class AccessionTableView(PermissionRequiredMixin, SingleTableView):
     table_class = tables.AccessionTable
     # PermissionRequiredMixin
     permission_required = 'lims.view_accession'
+    # django-filters
+    filterset_class = filters.AccessionsFilter
 
 class ProjectTableView(PermissionRequiredMixin, SingleTableView):
     # django
