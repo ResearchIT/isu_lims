@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
-import enum
 
 class Genus(models.Model):
     genus = models.CharField(max_length=200)
@@ -44,21 +43,14 @@ class Species(models.Model):
 #admin only
 class Accession(models.Model):
 
-    class EAccessionType(enum.Enum):
-        WILD = 'W'
-        DOMESTICATED = 'D'
-        LANDRACE = 'L'
-        UNKNOWN = 'U'
-
-    ACCESSION_TYPE_CHOICES = (
-        (EAccessionType.WILD.value, 'Wild'),
-        (EAccessionType.DOMESTICATED.value, 'Domesticated'),
-        (EAccessionType.LANDRACE.value, 'Landrace'),
-        (EAccessionType.UNKNOWN.value, 'Unknown'),
-    )
+    class EAccessionType(models.TextChoices):
+        WILD = 'W', 'Wild'
+        DOMESTICATED = 'D', 'Domesticated'
+        LANDRACE = 'L', 'Landrace'
+        UNKNOWN = 'U', 'Unknown'
 
     accession = models.CharField(max_length=200)
-    status = models.CharField(max_length=1, choices=ACCESSION_TYPE_CHOICES, blank = True, null = True)
+    status = models.CharField(max_length=1, choices=EAccessionType.choices, blank = True, null = True)
     species = models.ForeignKey(Species, on_delete=models.CASCADE)
     alternatenames = models.CharField(max_length=100, blank = True)
     pinumber = models.CharField(max_length=30, blank = True)
@@ -118,25 +110,17 @@ class SeedPacket(models.Model):
 
 class Sample(models.Model):
 
-    class ESampleType(enum.Enum):
-        DNA = 'D'
-        RNA = 'R'
-        PROTEIN = 'P'
-        EPIGENETIC = 'E'
-        OTHER = 'O'
-
-    SAMPLE_TYPE_CHOICES = (
-        (ESampleType.DNA.value, 'DNA'),
-        (ESampleType.RNA.value, 'RNA'),
-        (ESampleType.PROTEIN.value, 'Protein'),
-        (ESampleType.EPIGENETIC.value, 'Epigenetic'),
-        (ESampleType.OTHER.value, 'Other'),
-    )
+    class ESampleType(models.TextChoices):
+        DNA = 'D', 'DNA'
+        RNA = 'R', 'RNA'
+        PROTEIN = 'P', 'Protein'
+        EPIGENETIC = 'E', 'Epigenetic'
+        OTHER = 'O', 'Other'
 
     plant = models.ForeignKey(Plant, on_delete=models.CASCADE, blank = True, null = True)
     project = models.ManyToManyField(Project)
     sample = models.CharField(max_length=200)
-    category = models.CharField(max_length=1, choices=SAMPLE_TYPE_CHOICES, null = True)
+    category = models.CharField(max_length=1, choices=ESampleType.choices, null = True)
     notes = models.TextField(blank = True)
     accession = models.ForeignKey(Accession, on_delete=models.CASCADE, blank = True, null = True)
     sequencingcompany = models.CharField(max_length=30, blank = True)
