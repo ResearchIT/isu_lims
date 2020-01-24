@@ -5,9 +5,9 @@ class AccessionTable(tables.Table):
 
     pinumber = tables.Column(accessor='pinumber', verbose_name='Plant ID')
     accession = tables.Column(accessor='accession', verbose_name='Plant Name')
-    genus = tables.Column(accessor='species.genome.subgenus.genus', verbose_name='Genus')
-    subgenus = tables.Column(accessor='species.genome.subgenus', verbose_name='Subgenus')
-    genome = tables.Column(accessor='species.genome', verbose_name='Genome')
+    genus = tables.Column(accessor='species__genome__subgenus__genus', verbose_name='Genus')
+    subgenus = tables.Column(accessor='species__genome__subgenus', verbose_name='Subgenus')
+    genome = tables.Column(accessor='species__genome', verbose_name='Genome')
     species = tables.Column(accessor='species', verbose_name='Species')
     demoboll = tables.BooleanColumn(accessor='demoboll', verbose_name='Demoboll', yesno='Y,N')
     status = tables.Column(accessor='status', verbose_name='Status')
