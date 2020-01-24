@@ -4,7 +4,7 @@
 This system is made for tracking plant lab samples, such as a seed inventory, and corresponding plants.
 
 ## Setup
-The system is built with [django] 2.x, and python3 
+The system is built with [django] 3.x, and python3 
 
 ### Pre-reqs:
 * python3
@@ -13,7 +13,7 @@ The system is built with [django] 2.x, and python3
 * clone this repo with `git clone --recursive`
 * open a shell, and cd into this directory
 * remove mysqlclient from requirements.txt
-* Remove settings using environment variables from settings.py (currently Auth/File Uploads), change SECRET_KEY, change database to SQLite
+* Remove settings using environment variables from settings.py (currently Auth/File Uploads/Logging), change SECRET_KEY, change database to SQLite, set DEBUG to true
 * install virtualenv: `pip3 install virtualenv`
 * `virtualenv env -p $(which python3)`
 * `source env/bin/activate`
