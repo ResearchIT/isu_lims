@@ -7,10 +7,7 @@ admin.site.register(models.Genus)
 admin.site.register(models.Subgenus)
 admin.site.register(models.Species)
 admin.site.register(models.Genome)
-admin.site.register(models.Accession)
-admin.site.register(models.SeedPacket)
 admin.site.register(models.Project)
-admin.site.register(models.Sample)
 admin.site.register(models.Herbarium)
 
 class PlantPhotoTabularInline(admin.TabularInline):
@@ -27,3 +24,17 @@ class PlantAdmin(admin.ModelAdmin):
         PlantPhotoTabularInline,
         HerbariumTabularInline,
     ]
+    autocomplete_fields = ['accession']
+
+@admin.register(models.Accession)
+class AccessionAdmin(admin.ModelAdmin):
+    search_fields = ['accession']
+
+
+@admin.register(models.Sample)
+class SampleAdmin(admin.ModelAdmin):
+    autocomplete_fields = ['accession']
+
+@admin.register(models.SeedPacket)
+class SeedPacketAdmin(admin.ModelAdmin):
+    autocomplete_fields = ['accession']
