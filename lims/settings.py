@@ -15,15 +15,11 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('LIMS_SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
 ALLOWED_HOSTS = [
     'wendel-lims.eeob.iastate.edu',
@@ -32,7 +28,6 @@ ALLOWED_HOSTS = [
     '127.0.0.1', 
     '[::1]'
 ]
-
 
 # Application definition
 
@@ -84,25 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lims.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        },
-        'NAME': os.getenv('LIMS_DATABASE_NAME'),
-        'USER': os.getenv('LIMS_DATABASE_USER'),
-        'PASSWORD': os.getenv('LIMS_DATABASE_PASSWORD'),
-        'HOST': os.getenv('LIMS_DATABASE_HOST'),
-        'PORT': os.getenv('LIMS_DATABASE_PORT'),
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -121,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -135,18 +110,6 @@ USE_L10N = True
 
 USE_TZ = False
 
-# File uploads
-
-AWS_ACCESS_KEY_ID = os.getenv('LIMS_CLOUD_ACCESS_KEY')
-AWS_SECRET_ACCESS_KEY = os.getenv('LIMS_CLOUD_SECRET_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('LIMS_CLOUD_BUCKET_NAME')
-AWS_S3_REGION_NAME = os.getenv('LIMS_CLOUD_REGION_NAME')
-AWS_S3_ENDPOINT_URL = os.getenv('LIMS_CLOUD_ENDPOINT_URL')
-AWS_S3_ADDRESSING_STYLE = "path"
-AWS_DEFAULT_ACL = None
-AWS_S3_FILE_OVERWRITE = False
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
@@ -154,43 +117,93 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Logging
+if os.getenv('LIMS_DEVEL_ACTIVE', '') == 'IM_REALLY_SURE_THIS_ISNT_PRODUCTION':
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.getenv('LIMS_LOG_FILE'),
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+
+    # Database
+    # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
+else:
+
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = False
+
+    # Database
+    # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            },
+            'NAME': os.getenv('LIMS_DATABASE_NAME'),
+            'USER': os.getenv('LIMS_DATABASE_USER'),
+            'PASSWORD': os.getenv('LIMS_DATABASE_PASSWORD'),
+            'HOST': os.getenv('LIMS_DATABASE_HOST'),
+            'PORT': os.getenv('LIMS_DATABASE_PORT'),
+        }
+    }
+
+
+    # File uploads
+
+    AWS_ACCESS_KEY_ID = os.getenv('LIMS_CLOUD_ACCESS_KEY')
+    AWS_SECRET_ACCESS_KEY = os.getenv('LIMS_CLOUD_SECRET_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('LIMS_CLOUD_BUCKET_NAME')
+    AWS_S3_REGION_NAME = os.getenv('LIMS_CLOUD_REGION_NAME')
+    AWS_S3_ENDPOINT_URL = os.getenv('LIMS_CLOUD_ENDPOINT_URL')
+    AWS_S3_ADDRESSING_STYLE = "path"
+    AWS_DEFAULT_ACL = None
+    AWS_S3_FILE_OVERWRITE = False
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+    # Logging
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.getenv('LIMS_LOG_FILE'),
+            },
         },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': os.getenv('LIMS_LOG_LEVEL', 'INFO'),
-            'propagate': True,
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': os.getenv('LIMS_LOG_LEVEL', 'INFO'),
+                'propagate': True,
+            },
         },
-    },
-}
+    }
 
-# Auth Stuff
+    # Auth Stuff
 
-# Add 'mozilla_django_oidc' authentication backend
-AUTHENTICATION_BACKENDS = (
-    'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
-    # ...
-)
+    # Add 'mozilla_django_oidc' authentication backend
+    AUTHENTICATION_BACKENDS = (
+        'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
+        # ...
+    )
 
-OIDC_USERNAME_ALGO = 'lims.auth.generate_username'
-OIDC_RP_CLIENT_ID = os.getenv('LIMS_OIDC_RP_CLIENT_ID')
-OIDC_RP_CLIENT_SECRET = os.getenv('LIMS_OIDC_RP_CLIENT_SECRET')
-OIDC_RP_SIGN_ALGO = 'RS256'
-OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/authorize'
-OIDC_OP_TOKEN_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/token'
-OIDC_OP_USER_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/userinfo'
-OIDC_OP_JWKS_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/keys'
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/oidc/authenticate/'
-LOGOUT_REDIRECT_URL = '/'
+    OIDC_USERNAME_ALGO = 'lims.auth.generate_username'
+    OIDC_RP_CLIENT_ID = os.getenv('LIMS_OIDC_RP_CLIENT_ID')
+    OIDC_RP_CLIENT_SECRET = os.getenv('LIMS_OIDC_RP_CLIENT_SECRET')
+    OIDC_RP_SIGN_ALGO = 'RS256'
+    OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/authorize'
+    OIDC_OP_TOKEN_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/token'
+    OIDC_OP_USER_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/userinfo'
+    OIDC_OP_JWKS_ENDPOINT = 'https://iastate.okta.com/oauth2/v1/keys'
+    LOGIN_REDIRECT_URL = '/'
+    LOGIN_URL = '/oidc/authenticate/'
+    LOGOUT_REDIRECT_URL = '/'

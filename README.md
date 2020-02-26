@@ -13,13 +13,21 @@ The system is built with [django] 3.x, and python3
 * clone this repo with `git clone --recursive`
 * open a shell, and cd into this directory
 * remove mysqlclient from requirements.txt
-* Remove settings using environment variables from settings.py (currently Auth/File Uploads/Logging), change SECRET_KEY, change database to SQLite, set DEBUG to true
+* Create a file set_env.sh with contents like the following
+  ```
+    export LIMS_SECRET_KEY='asdfasdfasdfasdfasdfasdfaasdfasdf'
+    export LIMS_DEVEL_ACTIVE='IM_REALLY_SURE_THIS_ISNT_PRODUCTION'
+    export LIMS_DEVEL_ADMIN_USERNAME='adminuser'
+    export LIMS_DEVEL_ADMIN_PASSWORD='adminpassword'
+    export LIMS_DEVEL_ADMIN_EMAIL='youremail@example.com'
+   ```
+
 * install virtualenv: `pip3 install virtualenv`
 * `virtualenv env -p $(which python3)`
 * `source env/bin/activate`
+* `source set_env.sh`
 * `pip install -r requirements.txt`
-* `python manage.py migrate`
-* `python manage.py createsuperuser`
+* `./reset.sh`
 
 [django]: https://www.djangoproject.com/
 
