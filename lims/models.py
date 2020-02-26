@@ -53,7 +53,6 @@ class Accession(models.Model):
     subgenusflat = models.CharField(max_length=200, blank = True)
     genomeflat = models.CharField(max_length=200, blank = True)
     speciesflat = models.CharField(max_length=200, blank = True)
-    species = models.ForeignKey(Species, on_delete=models.CASCADE)
     alternatenames = models.CharField(max_length=100, blank = True)
     pinumber = models.CharField(max_length=30, blank = True)
     demoboll = models.BooleanField(null = True)
