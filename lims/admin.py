@@ -21,6 +21,7 @@ class PlantAdmin(admin.ModelAdmin):
         HerbariumTabularInline,
     ]
     autocomplete_fields = ['accession']
+    list_display = ['accession', 'flowering', 'location', 'notes']
 
 @admin.register(models.Accession)
 class AccessionAdmin(admin.ModelAdmin):
