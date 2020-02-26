@@ -38,8 +38,6 @@ class Species(models.Model):
     def __str__(self):
         return self.species
 
-
-
 #admin only
 class Accession(models.Model):
 
@@ -51,6 +49,10 @@ class Accession(models.Model):
 
     accession = models.CharField(max_length=200)
     status = models.CharField(max_length=1, choices=EAccessionType.choices, blank = True, null = True)
+    genusflat = models.CharField(max_length=200, blank = True)
+    subgenusflat = models.CharField(max_length=200, blank = True)
+    genomeflat = models.CharField(max_length=200, blank = True)
+    speciesflat = models.CharField(max_length=200, blank = True)
     species = models.ForeignKey(Species, on_delete=models.CASCADE)
     alternatenames = models.CharField(max_length=100, blank = True)
     pinumber = models.CharField(max_length=30, blank = True)
