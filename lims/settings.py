@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'lims.apps.IsulimsThemeConfig',
     'bootstrap3',
     'django_tables2',
-    'lims_data_importer'
 ]
 
 MIDDLEWARE = [
