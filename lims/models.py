@@ -13,10 +13,10 @@ class Accession(models.Model):
 
     accession = models.CharField(max_length=200)
     status = models.CharField(max_length=1, choices=EAccessionType.choices, blank = True, null = True)
-    genusflat = models.CharField(max_length=200, blank = True)
-    subgenusflat = models.CharField(max_length=200, blank = True)
-    genomeflat = models.CharField(max_length=200, blank = True)
-    speciesflat = models.CharField(max_length=200, blank = True)
+    genus = models.CharField(max_length=200, blank = True)
+    subgenus = models.CharField(max_length=200, blank = True)
+    genome = models.CharField(max_length=200, blank = True)
+    species = models.CharField(max_length=200, blank = True)
     alternatenames = models.CharField(max_length=100, blank = True)
     pinumber = models.CharField(max_length=30, blank = True)
     demoboll = models.BooleanField(null = True)
@@ -53,7 +53,7 @@ class Plant(models.Model):
     flowering = models.BooleanField(null = True)
 
     def __str__(self):
-        return self.accession.genusflat + ' ' + self.accession.speciesflat + ' ' + self.accession.accession
+        return self.accession.genus + ' ' + self.accession.species + ' ' + self.accession.accession
 
 # need to track who has them checked out / location (box, or desk, or storage, etc.)
 # should be in storage, but often kept at workbench
@@ -71,7 +71,7 @@ class SeedPacket(models.Model):
     checkedoutby = models.ForeignKey(User, on_delete=models.CASCADE, blank = True, null = True)
 
     def __str__(self):
-        return self.accession.genusflat + ' ' + self.accession.speciesflat + ' ' + self.accession.accession
+        return self.accession.genus + ' ' + self.accession.species + ' ' + self.accession.accession
 
 class Sample(models.Model):
 

@@ -25,7 +25,7 @@ class PlantAdmin(admin.ModelAdmin):
 @admin.register(models.Accession)
 class AccessionAdmin(admin.ModelAdmin):
     search_fields = ['accession']
-    list_display = ['accession', 'genusflat', 'subgenusflat', 'genomeflat', 'speciesflat']
+    list_display = ['accession', 'genus', 'subgenus', 'genome', 'species']
 
 @admin.register(models.Sample)
 class SampleAdmin(admin.ModelAdmin):
