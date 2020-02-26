@@ -2,42 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 
-class Genus(models.Model):
-    genus = models.CharField(max_length=200)
-
-    class Meta:
-        verbose_name_plural = "Genera"
-    
-    def __str__(self):
-        return self.genus
-
-class Subgenus(models.Model):
-    subgenus = models.CharField(max_length=200)
-    genus = models.ForeignKey(Genus, on_delete=models.CASCADE)
-    
-    class Meta:
-        verbose_name_plural = "SubGenera"
-
-    def __str__(self):
-        return self.subgenus
-
-class Genome(models.Model):
-    genome = models.CharField(max_length=200)
-    subgenus = models.ForeignKey(Subgenus, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.genome
-
-class Species(models.Model):
-    species = models.CharField(max_length=200)
-    genome = models.ForeignKey(Genome, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name_plural = "Species"
-    
-    def __str__(self):
-        return self.species
-
 #admin only
 class Accession(models.Model):
 

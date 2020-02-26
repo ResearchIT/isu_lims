@@ -3,10 +3,6 @@ from django.contrib import admin
 # Register your models here.
 from . import models
 
-admin.site.register(models.Genus)
-admin.site.register(models.Subgenus)
-admin.site.register(models.Species)
-admin.site.register(models.Genome)
 admin.site.register(models.Project)
 admin.site.register(models.Herbarium)
 
