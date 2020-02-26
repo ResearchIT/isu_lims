@@ -14,7 +14,7 @@ def thanks(request):
 
 class AccessionTableView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     # django
-    queryset = models.Accession.objects.select_related('species', 'species__genome', 'species__genome__subgenus', 'species__genome__subgenus__genus')
+    model = models.Accession
     template_name = "lims/filterable_overview_table_page.html"
     # django-tables2
     table_class = tables.AccessionTable
