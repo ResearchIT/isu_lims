@@ -24,7 +24,7 @@ class Accession(models.Model):
     # add PI-number (USDA germplasm database - could be a link, maybe)
 
     def __str__(self):
-        return self.accession
+        return ' '.join([self.genus, self.subgenus, self.genome, self.species, self.accession])
 
 # needs to relate to plants & samples too
 class Project(models.Model):
