@@ -22,6 +22,7 @@ class PlantAdmin(admin.ModelAdmin):
     ]
     autocomplete_fields = ['accession']
     list_display = ['accession', 'flowering', 'location', 'notes']
+    search_fields = ['accession__accession']
 
 @admin.register(models.Accession)
 class AccessionAdmin(admin.ModelAdmin):
