@@ -27,7 +27,8 @@ class PlantAdmin(admin.ModelAdmin):
 @admin.register(models.Accession)
 class AccessionAdmin(admin.ModelAdmin):
     search_fields = ['accession']
-    list_display = ['accession', 'genus', 'subgenus', 'genome', 'species']
+    list_display = ['id', 'accession', 'genus', 'subgenus', 'genome', 'species']
+    list_display_links = ['id']
     list_editable = ['accession']
 
 @admin.register(models.Sample)
