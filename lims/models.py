@@ -20,6 +20,7 @@ class Accession(models.Model):
     alternatenames = models.CharField(max_length=100, blank = True)
     pinumber = models.CharField(max_length=30, blank = True)
     demoboll = models.BooleanField(null = True)
+    collection_location = models.CharField(max_length=200, blank = True)
     # add alternate names
     # add PI-number (USDA germplasm database - could be a link, maybe)
 
@@ -98,6 +99,8 @@ class Sample(models.Model):
     tissue_type = models.CharField(max_length=200, blank = True, null = True)
     time_point = models.CharField(max_length=200, blank = True)
     dev_time_point = models.CharField(max_length=200, blank = True)
+    file_names = models.TextField(blank = True)
+    file_location = models.CharField(max_length=200, blank = True)
 
     def __str__(self):
         return self.sample
