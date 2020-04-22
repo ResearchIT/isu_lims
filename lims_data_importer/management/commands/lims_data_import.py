@@ -46,12 +46,12 @@ class Command(BaseCommand):
         packet = SeedPacket()
         packet.accession = self.get_accession(row)
         packet.notes = row['Notes']
-        if row['Parent A'] != "":
-            packet.parenta = int(row['Parent A'])
         packet.quantity = int(row['Quantity'])
         packet.location = row['Location']
         if row['Date collected'] != "" and row['Date collected'] != "NA":
             packet.datecollected = datetime.date(*(time.strptime(row['Date collected'] + " 00:00 -0500", "%m/%d/%Y %H:%M %z")[0:3]))
+        if row['Parent A'] != "":
+            packet.parenta_id = int(row['Parent A'])
         return packet
 
     def handle_row(self, row):
