@@ -44,7 +44,7 @@ class Command(BaseCommand):
 
     def make_seed_packet(self, row):
         packet = SeedPacket()
-        packet.accession = get_accession(row)
+        packet.accession = self.get_accession(row)
         packet.notes = row['Notes']
         if row['Parent A'] != "":
             packet.parenta = int(row['Parent A'])
