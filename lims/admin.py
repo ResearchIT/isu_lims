@@ -38,3 +38,4 @@ class SampleAdmin(admin.ModelAdmin):
 @admin.register(models.SeedPacket)
 class SeedPacketAdmin(admin.ModelAdmin):
     autocomplete_fields = ['accession']
+    list_display = ['accession', 'parenta', 'parentb', 'quantity', 'datecollected', 'location', 'checkedoutby', 'notes']
