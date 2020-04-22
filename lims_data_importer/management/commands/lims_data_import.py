@@ -5,7 +5,7 @@ from lims_data_importer.utils import *
 from lims.models import Accession, SeedPacket
 import os
 import datetime
-import date
+import time
 import re
 
 class Command(BaseCommand):
