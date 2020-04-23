@@ -67,7 +67,7 @@ class SeedPacket(models.Model):
     parenta = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringa', blank = True, null = True)
     parentb = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name='offspringb', blank = True, null = True)
     quantity = models.IntegerField(default=0)
-    datecollected = models.DateField(blank = True)
+    datecollected = models.DateField(blank = True, null = True)
     location = models.CharField(max_length=100, blank = True)
     checkedoutby = models.ForeignKey(User, on_delete=models.CASCADE, blank = True, null = True)
 
