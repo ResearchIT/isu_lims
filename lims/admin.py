@@ -37,5 +37,6 @@ class SampleAdmin(admin.ModelAdmin):
 
 @admin.register(models.SeedPacket)
 class SeedPacketAdmin(admin.ModelAdmin):
+    search_fields = ['accession__accession']
     autocomplete_fields = ['accession']
     list_display = ['accession', 'parenta', 'parentb', 'quantity', 'datecollected', 'location', 'checkedoutby', 'notes']
