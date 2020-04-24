@@ -40,7 +40,7 @@ class Command(BaseCommand):
             row[key] = row[key].strip()
 
     def get_accession(self, row):
-        return Accession.objects.get(accession=row['Accessions'])
+        return Accession.objects.get(accession=row['Accession'])
 
     def get_project(self, row):
         return Project.objects.get(project=row['Project'])
