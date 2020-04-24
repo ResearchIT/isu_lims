@@ -50,7 +50,7 @@ class Command(BaseCommand):
         packet.location = row['Location']
         if row['Date collected'] != "" and row['Date collected'] != "NA":
             packet.datecollected = datetime.date(*(time.strptime(row['Date collected'] + " 00:00 -0500", "%m/%d/%Y %H:%M %z")[0:3]))
-        if row['Parent A'] != "":
+        if row['Parent A'] != "" and row['Parent A'] != "NA":
             packet.parenta_id = int(row['Parent A'])
         return packet
 
