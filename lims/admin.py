@@ -34,6 +34,8 @@ class AccessionAdmin(admin.ModelAdmin):
 @admin.register(models.Sample)
 class SampleAdmin(admin.ModelAdmin):
     autocomplete_fields = ['accession']
+    list_display = ['id', 'sample', 'accession', 'sranumber', 'strategy', 'sequenceinstrument', 'tissue_type', 'time_point', 'dev_time_point']
+    list_display_links = ['id']
 
 @admin.register(models.SeedPacket)
 class SeedPacketAdmin(admin.ModelAdmin):
