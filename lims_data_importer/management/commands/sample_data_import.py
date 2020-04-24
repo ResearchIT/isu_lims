@@ -48,7 +48,6 @@ class Command(BaseCommand):
     def make_sample(self, row):
         sample = Sample()
         sample.accession = self.get_accession(row)
-        sample.project.add(self.get_project(row))
         sample.sranumber = row['Sranumber']
         sample.strategy = row['Strategy']
         sample.sequenceinstrument = row['Sequenceinstrument']
@@ -58,6 +57,9 @@ class Command(BaseCommand):
         sample.dev_time_point = row['Dev time point']
         sample.file_names = row['filename'] + '\n' + row['filename2']
         sample.file_location = row['File Location']
+        sample.save()
+        sample.project.add(self.get_project(row))
+        sample.save()
         return sample
 
     def handle_row(self, row):
