@@ -21,7 +21,8 @@ class PlantAdmin(admin.ModelAdmin):
         HerbariumTabularInline,
     ]
     autocomplete_fields = ['accession']
-    list_display = ['accession', 'flowering', 'location', 'notes']
+    list_display = ['id', 'accession', 'flowering', 'location', 'notes']
+    list_display_links = ['id']
     search_fields = ['accession__accession']
 
 @admin.register(models.Accession)
@@ -41,4 +42,5 @@ class SampleAdmin(admin.ModelAdmin):
 class SeedPacketAdmin(admin.ModelAdmin):
     search_fields = ['accession__accession']
     autocomplete_fields = ['accession']
-    list_display = ['accession', 'parenta', 'parentb', 'quantity', 'datecollected', 'location', 'checkedoutby', 'notes']
+    list_display = ['id', 'accession', 'parenta', 'parentb', 'quantity', 'datecollected', 'location', 'checkedoutby', 'notes']
+    list_display_links = ['id']
