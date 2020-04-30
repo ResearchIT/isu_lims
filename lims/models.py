@@ -54,7 +54,7 @@ class Plant(models.Model):
     flowering = models.BooleanField(null = True)
 
     def __str__(self):
-        return self.accession.genus + ' ' + self.accession.species + ' ' + self.accession.accession
+        return self.accession.genus + ' ' + self.accession.species + ' ' + self.accession.accession + self.notes.split("\n")[0]
 
 # need to track who has them checked out / location (box, or desk, or storage, etc.)
 # should be in storage, but often kept at workbench
