@@ -1,7 +1,29 @@
 from django.contrib import admin
 
+import csv
+from django.http import HttpResponse
+
 # Register your models here.
 from . import models
+
+#https://books.agiliq.com/projects/django-admin-cookbook/en/latest/export.html
+class ExportCsvMixin:
+    def export_as_csv(self, request, queryset):
+
+        meta = self.model._meta
+        field_names = [field.name for field in meta.fields]
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
+        writer = csv.writer(response)
+
+        writer.writerow(field_names)
+        for obj in queryset:
+            row = writer.writerow([getattr(obj, field) for field in field_names])
+
+        return response
+
+    export_as_csv.short_description = "Export Selected"
 
 admin.site.register(models.Project)
 admin.site.register(models.Herbarium)
@@ -15,7 +37,7 @@ class HerbariumTabularInline(admin.TabularInline):
     raw_id_fields = ('plant',)
 
 @admin.register(models.Plant)
-class PlantAdmin(admin.ModelAdmin):
+class PlantAdmin(admin.ModelAdmin, ExportCsvMixin):
     inlines = [
         PlantPhotoTabularInline,
         HerbariumTabularInline,
@@ -24,6 +46,7 @@ class PlantAdmin(admin.ModelAdmin):
     list_display = ['id', 'accession', 'flowering', 'location', 'notes']
     list_display_links = ['id']
     search_fields = ['accession__accession']
+    actions = ["export_as_csv"]
 
 @admin.register(models.Accession)
 class AccessionAdmin(admin.ModelAdmin):
