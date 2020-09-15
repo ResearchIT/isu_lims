@@ -15,9 +15,9 @@ class Command(BaseCommand):
         super().__init__(*args, **kwargs)
 
     def handle(self, *args, **options):
-        with open(os.path.join(BASE_DIR, 'lims_data_importer', 'data', 'lims_data', 'sample_data.csv'), 'r', newline='') as raw_input_file:
+        with open(os.path.join(BASE_DIR, 'lims_data_importer', 'data', 'lims_data', 'samples.tsv'), 'r', newline='') as raw_input_file:
             input_file = FileWrapper(raw_input_file)
-            reader = LimsCSVReader(input_file, delimiter=",", quotechar="\"")
+            reader = LimsCSVReader(input_file, delimiter="\t", quotechar="\"")
             row_number = 0
             for row in reader:
                 try:
@@ -52,12 +52,17 @@ class Command(BaseCommand):
         sample.sranumber = row['Sranumber']
         sample.strategy = row['Strategy']
         sample.sequenceinstrument = row['Sequenceinstrument']
-        sample.sequencingcompany = row['Sequencingcompany']
+        sample.sequencingcompany = row['Sequencing company']
         sample.tissue_type = row['Tissue type']
         sample.time_point = row['Time point']
         sample.dev_time_point = row['Dev time point']
-        sample.file_names = row['filename'] + '\n' + row['filename2']
-        sample.file_location = row['File Location']
+        sample.file_names = row['File names']
+        sample.file_location = row['File location']
+        sample.notes = row['Notes']
+        sample.trackingnumber = row['Trackingnumber']
+        sample.coverage = row['Coverage']
+        sample.pcrfree = row['PCRfree'] == "YES"
+        sample.category = Sample.ESampleType[row['Category']]
         sample.save()
         sample.project.add(self.get_project(row))
         return sample
