@@ -17,7 +17,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         with open(os.path.join(BASE_DIR, 'lims_data_importer', 'data', 'lims_data', 'samples.tsv'), 'r', newline='') as raw_input_file:
             input_file = FileWrapper(raw_input_file)
-            reader = LimsCSVReader(input_file, delimiter="\t", quotechar="\"")
+            reader = LimsCSVReader(input_file, delimiter=",", quotechar="\"")
             row_number = 0
             for row in reader:
                 try:
@@ -40,29 +40,29 @@ class Command(BaseCommand):
             row[key] = row[key].strip()
 
     def get_accession(self, row):
-        return Accession.objects.get(accession=row['Accession'])
+        return Accession.objects.get(accession=row['accession'])
 
     def get_project(self, row):
-        return Project.objects.get(project=row['Project'])
+        return Project.objects.get(project=row['project'])
 
     def make_sample(self, row):
         sample = Sample()
         sample.accession = self.get_accession(row)
-        sample.sample = row['Sample']
-        sample.sranumber = row['Sranumber']
-        sample.strategy = row['Strategy']
-        sample.sequenceinstrument = row['Sequenceinstrument']
-        sample.sequencingcompany = row['Sequencing company']
-        sample.tissue_type = row['Tissue type']
-        sample.time_point = row['Time point']
-        sample.dev_time_point = row['Dev time point']
-        sample.file_names = row['File names']
-        sample.file_location = row['File location']
-        sample.notes = row['Notes']
-        sample.trackingnumber = row['Trackingnumber']
-        sample.coverage = row['Coverage']
-        sample.pcrfree = row['PCRfree'] == "YES"
-        sample.category = Sample.ESampleType[row['Category']]
+        sample.sample = row['sample']
+        sample.sranumber = row['sranumber']
+        sample.strategy = row['strategy']
+        sample.sequenceinstrument = row['sequenceinstrument']
+        sample.sequencingcompany = row['sequencingcompany']
+        sample.tissue_type = row['tissue_type']
+        sample.time_point = row['time_point']
+        sample.dev_time_point = row['dev_time_point']
+        sample.file_names = row['file_names']
+        sample.file_location = row['file_location']
+        sample.notes = row['notes']
+        sample.trackingnumber = row['trackingnumber']
+        sample.coverage = row['coverage']
+        sample.pcrfree = row['pcrfree'] == "YES"
+        sample.category = Sample.ESampleType[row['category']]
         sample.save()
         sample.project.add(self.get_project(row))
         return sample
