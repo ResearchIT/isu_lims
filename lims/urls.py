@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('admin/sample/import', views.ImportSamplesAdminView.as_view(), name='import_samples'),
     path('oidc/', include('mozilla_django_oidc.urls')),
     path('accession', views.AccessionTableView.as_view(), name='accession'),
     path('project', views.ProjectTableView.as_view(), name='project'),

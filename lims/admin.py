@@ -57,6 +57,7 @@ class AccessionAdmin(admin.ModelAdmin):
 
 @admin.register(models.Sample)
 class SampleAdmin(admin.ModelAdmin):
+    change_list_template = 'admin/lims/sample_change_list.html'
     autocomplete_fields = ['accession']
     list_display = ['id', 'sample', 'accession', 'sranumber', 'strategy', 'sequenceinstrument', 'tissue_type', 'time_point', 'dev_time_point']
     list_display_links = ['id']

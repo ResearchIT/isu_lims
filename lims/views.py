@@ -1,10 +1,12 @@
+from django.views.generic.edit import FormView
 from django.shortcuts import render
 from django_tables2 import SingleTableView
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.http import HttpResponse
 
-from . import models, tables, filters
+from . import models, tables, filters, forms
 
 def index(request):
     return render(request, 'lims/index.html')
@@ -67,3 +69,27 @@ class HerbariumTableView(PermissionRequiredMixin, SingleTableView):
     table_class = tables.HerbariumTable
     # PermissionRequiredMixin
     permission_required = 'lims.view_herbarium'
+
+class ImportSamplesAdminView(PermissionRequiredMixin, FormView):
+    form_class = forms.SampleImportForm
+    permission_required = 'lims.change_sample'
+    template_name = "admin/lims/import_samples.html"
+    success_url = '/admin/lims/sample/'
+
+    def form_valid(self, form):
+        csv_data = form.cleaned_data['csv_file']
+        zipped_rejects = form.import_from_csv(csv_data)
+        response = HttpResponse(zipped_rejects, content_type='application/zip')
+        response['Content-Disposition'] = 'inline;filename=rejects.zip'
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Manually plugging in context variables needed 
+        # to display necessary links and blocks in the 
+        # django admin. 
+        context['title'] = 'Import Samples CSV'
+        #context['has_permission'] = True
+
+        return context
