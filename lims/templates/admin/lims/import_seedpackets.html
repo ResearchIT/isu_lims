@@ -5,13 +5,13 @@
 <div class="breadcrumbs">
   <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
   &rsaquo; <a href="{% url 'admin:app_list' app_label='lims' %}">Lims</a>
-  &rsaquo; <a href="/admin/lims/sample/">Samples</a>
-  &rsaquo; {% trans 'Import samples from CSV' %} {{ original|truncatewords:"18" }}
+  &rsaquo; <a href="/admin/lims/seedpacket/">Seedpackets</a>
+  &rsaquo; {% trans 'Import seedpackets from CSV' %} {{ original|truncatewords:"18" }}
 </div>
 {% endblock %}
 
 {% block content %}
-<form enctype="multipart/form-data" action="/admin/sample/import" method="POST">
+<form enctype="multipart/form-data" action="/admin/seedpacket/import" method="POST">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">

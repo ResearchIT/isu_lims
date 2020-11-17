@@ -93,3 +93,27 @@ class ImportSamplesAdminView(PermissionRequiredMixin, FormView):
         #context['has_permission'] = True
 
         return context
+
+class ImportSeedpacketsAdminView(PermissionRequiredMixin, FormView):
+    form_class = forms.SeedpacketImportForm
+    permission_required = 'lims.change_seedpacket'
+    template_name = "admin/lims/import_seedpackets.html"
+    success_url = '/admin/lims/seedpacket/'
+
+    def form_valid(self, form):
+        csv_data = form.cleaned_data['csv_file']
+        zipped_rejects = form.import_from_csv(csv_data)
+        response = HttpResponse(zipped_rejects, content_type='application/zip')
+        response['Content-Disposition'] = 'inline;filename=rejects.zip'
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Manually plugging in context variables needed 
+        # to display necessary links and blocks in the 
+        # django admin. 
+        context['title'] = 'Import Seedpackets CSV'
+        #context['has_permission'] = True
+
+        return context
