@@ -25,8 +25,8 @@ ALLOWED_HOSTS = [
     'wendel-lims.eeob.iastate.edu',
     '.apps.openshift.las.iastate.edu',
     '.apps.nimbus.las.iastate.edu',
-    'localhost', 
-    '127.0.0.1', 
+    'localhost',
+    '127.0.0.1',
     '[::1]'
 ]
 
@@ -215,3 +215,7 @@ else:
     LOGIN_REDIRECT_URL = '/'
     LOGIN_URL = '/oidc/authenticate/'
     LOGOUT_REDIRECT_URL = '/'
+
+    # without this the oidc auth generates an http redirect URL
+    # because we're doing edge termination
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
