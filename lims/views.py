@@ -44,7 +44,7 @@ class PlantTableView(PermissionRequiredMixin, ExportMixin, SingleTableView):
     # PermissionRequiredMixin
     permission_required = 'lims.view_plant'
 
-class SeedPacketTableView(PermissionRequiredMixin, ExportMixin, ExportMixin, SingleTableView):
+class SeedPacketTableView(PermissionRequiredMixin, ExportMixin, SingleTableView):
     # django
     model = models.SeedPacket
     template_name = "lims/filterable_overview_table_page.html"
