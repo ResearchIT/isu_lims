@@ -12,8 +12,13 @@
             {% bootstrap_button 'filter' %}
         </form>
     {% endif %}
+    {% for format in view.export_formats %}
+    <a href="{% export_url format %}">
+        download  <code>.{{ format }}</code>
+    </a>
+    {% endfor %}
     {% render_table table %}
-    
+
     <p>There are {{ table.rows | length }} results</p>
 
     </div>

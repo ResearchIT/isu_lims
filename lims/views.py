@@ -1,6 +1,7 @@
 from django.views.generic.edit import FormView
 from django.shortcuts import render
 from django_tables2 import SingleTableView
+from django_tables2.export.views import ExportMixin
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -14,7 +15,7 @@ def index(request):
 def thanks(request):
     return render(request, 'lims/thanks.html')
 
-class AccessionTableView(PermissionRequiredMixin, SingleTableMixin, FilterView):
+class AccessionTableView(PermissionRequiredMixin, SingleTableMixin, ExportMixin, FilterView):
     # django
     model = models.Accession
     template_name = "lims/filterable_overview_table_page.html"
@@ -25,7 +26,7 @@ class AccessionTableView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     # django-filters
     filterset_class = filters.AccessionsFilter
 
-class ProjectTableView(PermissionRequiredMixin, SingleTableView):
+class ProjectTableView(PermissionRequiredMixin, ExportMixin, SingleTableView):
     # django
     model = models.Project
     template_name = "lims/filterable_overview_table_page.html"
@@ -34,7 +35,7 @@ class ProjectTableView(PermissionRequiredMixin, SingleTableView):
     # PermissionRequiredMixin
     permission_required = 'lims.view_project'
 
-class PlantTableView(PermissionRequiredMixin, SingleTableView):
+class PlantTableView(PermissionRequiredMixin, ExportMixin, SingleTableView):
     # django
     model = models.Plant
     template_name = "lims/filterable_overview_table_page.html"
@@ -43,7 +44,7 @@ class PlantTableView(PermissionRequiredMixin, SingleTableView):
     # PermissionRequiredMixin
     permission_required = 'lims.view_plant'
 
-class SeedPacketTableView(PermissionRequiredMixin, SingleTableView):
+class SeedPacketTableView(PermissionRequiredMixin, ExportMixin, ExportMixin, SingleTableView):
     # django
     model = models.SeedPacket
     template_name = "lims/filterable_overview_table_page.html"
@@ -52,7 +53,7 @@ class SeedPacketTableView(PermissionRequiredMixin, SingleTableView):
     # PermissionRequiredMixin
     permission_required = 'lims.view_seedpacket'
 
-class SampleTableView(PermissionRequiredMixin, SingleTableView):
+class SampleTableView(PermissionRequiredMixin, ExportMixin, SingleTableView):
     # django
     model = models.Sample
     template_name = "lims/filterable_overview_table_page.html"
@@ -61,7 +62,7 @@ class SampleTableView(PermissionRequiredMixin, SingleTableView):
     # PermissionRequiredMixin
     permission_required = 'lims.view_sample'
 
-class HerbariumTableView(PermissionRequiredMixin, SingleTableView):
+class HerbariumTableView(PermissionRequiredMixin, ExportMixin, SingleTableView):
     # django
     model = models.Herbarium
     template_name = "lims/filterable_overview_table_page.html"
@@ -86,9 +87,9 @@ class ImportSamplesAdminView(PermissionRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Manually plugging in context variables needed 
-        # to display necessary links and blocks in the 
-        # django admin. 
+        # Manually plugging in context variables needed
+        # to display necessary links and blocks in the
+        # django admin.
         context['title'] = 'Import Samples CSV'
         #context['has_permission'] = True
 
@@ -110,9 +111,9 @@ class ImportSeedpacketsAdminView(PermissionRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Manually plugging in context variables needed 
-        # to display necessary links and blocks in the 
-        # django admin. 
+        # Manually plugging in context variables needed
+        # to display necessary links and blocks in the
+        # django admin.
         context['title'] = 'Import Seedpackets CSV'
         #context['has_permission'] = True
 
