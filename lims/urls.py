@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
+    path('admin/login/', RedirectView.as_view(pattern_name='oidc_authentication_init', query_string=True, permanent=False), name='login'),
+    path('admin/default-login/', admin.site.login, name='default-admin-login'),
     path('admin/', admin.site.urls),
     path('admin/sample/import', views.ImportSamplesAdminView.as_view(), name='import_samples'),
     path('admin/seedpacket/import', views.ImportSeedpacketsAdminView.as_view(), name='import_seedpackets'),
